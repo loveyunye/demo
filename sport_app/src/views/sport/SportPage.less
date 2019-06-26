@@ -1,0 +1,81 @@
+.sport-container {
+  height: 100%;
+  background-color: #f5f9f8;
+  overflow-y: scroll;
+  .sport-title {
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #13cb9b;
+    padding-bottom: 10px;
+    background-color: #fff;
+  }
+  .sport-plan {
+    background-color: #fff;
+    height: 80px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    div {
+      text-align: center;
+      span {
+        display: block;
+        font-weight: bold;
+        &:nth-child(1) {
+          width: 32px;
+          height: 32px;
+          margin: 0 auto 10px;
+          line-height: 34px;
+          border-radius: 50%;
+          color: #fff;
+          i {
+            font-size: 18px;
+          }
+        }
+      }
+      &:nth-child(1) span:nth-child(1) {
+        background-color: #ff936b;
+      }
+      &:nth-child(2) span:nth-child(1) {
+        background-color: #9dccff;
+      }
+      &:nth-child(3) span:nth-child(1) {
+        background-color: #ffa18a;
+      }
+      &:nth-child(4) span:nth-child(1) {
+        background-color: #4ee890;
+      }
+    }
+  }
+  .tab-container {
+    height: 245px;
+  }
+
+  .notice {
+    height: 30px;
+    background-color: #fff;
+    line-height: 30px;
+    font-size: 13px;
+    color: #666;
+    span {
+      display: inline-block;
+      &:nth-child(1) {
+        height: 20px;
+        width: 20px;
+        color: #ffc260;
+        line-height: 20px;
+        border-radius: 50%;
+        border: 1px solid #ffc260;
+        text-align: center;
+        margin-right: 5px;
+      }
+      &:nth-child(2) {
+        margin-left: 5px;
+      }
+      
+    }
+
+  }
+}
