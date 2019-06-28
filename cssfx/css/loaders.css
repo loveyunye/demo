@@ -1,0 +1,177 @@
+/* loader-icon-css */
+
+/* loaders-1 */
+.loaders-1 div{
+  width: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+.loaders-1  div span {
+  width: 0.3em;
+  height: 1em;
+  background-color: #3cefff;
+  animation: grow 1s ease-in-out infinite;
+}
+.loaders-1  div span:nth-of-type(1) {
+  animation-delay: 0.45s;
+}
+.loaders-1  div span:nth-of-type(2) {
+  animation-delay: 0.3s;
+}
+.loaders-1  div span:nth-of-type(3) {
+  animation-delay: 0.15s;
+}
+@keyframes grow {
+  0%,100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2);
+  }
+}
+
+/* loaders-2 */
+.loaders-2 div {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  border: 3px solid #3cefff;
+  animation: spin 3s ease infinite;
+  overflow: hidden;
+}
+.loaders-2 div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3cefff;
+  opacity: 0.4;
+  transform-origin: center bottom;
+  transform: scaleY(1);
+  animation: fill 3s linear infinite;
+
+}
+@keyframes spin {
+  50%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fill {
+  25%, 50% {
+    transform: scaleY(0)
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+/* loaders-3 */
+.loaders-3 div {
+  width: 2em;
+  height: 2em;
+  border: 4px solid #3cefff;
+  animation: spinLoaders3 1.5s ease-in-out infinite running;
+  border-radius: 50%;
+}
+@keyframes spinLoaders3 {
+  to {
+    transform: rotateY(540deg);
+  }
+}
+
+/* loaders-4 */
+.loaders-4 div {
+  /* width: 4em; */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.loaders-4 div div{
+  background-color: #3cefff;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+}
+.loaders-4 div div:nth-child(1) {
+  animation: ball1 1s linear infinite;
+}
+.loaders-4 div div:nth-child(3) {
+  animation: ball2 1s 0.5s linear infinite;
+}
+@keyframes ball1 {
+  0%, 50%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1.5em)
+  }
+}
+@keyframes ball2 {
+  0%, 50%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(1.5em)
+  }
+}
+
+/* loaders-5 */
+.loaders-5 div {
+  width: 2.5em;
+  height: 3em;
+  border: 3px solid transparent;
+  border-top-color: #3cefff;
+  border-bottom-color: #3cefff;
+  border-radius: 50%;
+  animation: spin-stretch 2s ease infinite;
+}
+@keyframes spin-stretch {
+  50% {
+    transform: rotate(360deg) scale(0.4, 0.33);
+    border-width: 8px;
+  }
+  100% {
+    transform: rotate(720deg) scale(1, 1);
+    border-width: 3px;
+  }
+}
+
+/* loaders-6 */
+.loaders-6  div{
+  width: 2.5em;
+  height: 2.5em;
+  border: 3px solid rgba(61,239,255,.2);
+  border-radius: 50%;
+  border-top-color: #3cefff;
+  animation: spinLoader6 1s linear infinite;
+}
+@keyframes spinLoader6 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* loaders-7 */
+.loaders-7 svg {
+  width: 3.5em;
+  animation: spinLoader7 1.5s ease infinite;
+  /* fill: #3cefff; */
+
+}
+.loaders-7 .ring {
+  fill: none;
+  stroke: rgba(61,239,255,.2);;
+  stroke-width: 3;
+}
+.loaders-7 .ball {
+  fill: #3cefff;
+  stroke: none;
+}
+@keyframes spinLoader7{
+  to {
+    transform: rotate(360deg);
+  }
+}
