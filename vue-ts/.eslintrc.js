@@ -22,14 +22,11 @@ module.exports = {
     'space-after-keywords': 0,
     "space-in-parens": 0,
     // 文末强制换行
-    // "eol-last": 0,
+    "eol-last": 0,
     // 语句强制分号结尾
     "semi": [2, "always"]
   },
   parserOptions: {
-    parser: 'babel-eslint',
-    "ecmaFeatures": {
-      "legacyDecotators": true
-    }
+    parser: 'babel-eslint'
   }
 };

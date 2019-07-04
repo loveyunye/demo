@@ -47,4 +47,5 @@ export default new Router({
       children: constantRouter,
     },
   ],
+  linkActiveClass: 'active',
 });
