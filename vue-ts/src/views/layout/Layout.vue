@@ -4,7 +4,7 @@
       <Header/>
     </nav>
     <div class="body">
-      <router-view></router-view>
+      <router-view/>
     </div>
     <footer>
       Copyright © 2019·YUNYE
@@ -18,9 +18,10 @@ import Header from './Header.vue';
 @Component({
   components: {
     Header,
-  },
+  }
 })
-export default class Layout extends Vue {}
+class Layout extends Vue {}
+export default Layout;
 </script>
 
 
@@ -37,13 +38,17 @@ export default class Layout extends Vue {}
       background-color: #499ef3;
     }
     div.body {
-      width: 1000px;
+      width: 1160px;
+      min-height: 100px;
       margin: 0 auto;
-      flex: 1;
+      margin-top: 20px;
+      border-radius: 4px;
+      padding: 10px;
+      box-sizing: border-box;
       background-color: #fff;
     }
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1200px) {
       div.body {
         width: calc(100% - 40px);
         background-color: #fff;
