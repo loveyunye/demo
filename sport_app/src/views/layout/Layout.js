@@ -2,6 +2,7 @@ import React from 'react';
 import Dynamic from '../dynamic/DynamicPage';
 import Person from '../person/PersonPage';
 import Sport from '../sport/SportPage'
+import Hobbies from '../hobbies/HobbiesPage'
 import { TabBar } from 'antd-mobile';
 
 
@@ -10,7 +11,7 @@ export default class IndexPage extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'sport',
+      selectedTab: 'hobbies',
       hidden: false,
       fullScreen: true,
       navRouters: [
@@ -31,13 +32,20 @@ export default class IndexPage extends React.Component{
           }
         },
         {
+          title: '攻略',
+          key: 'hobbies',
+          icon: 'icon-hobbies',
+          page(){
+            return <Hobbies/>
+          }
+        },
+        {
           title: '我的',
           key: 'person',
           icon: 'icon-icon_signal',
           page(){
             return <Person/>
           }
-
         },
       ]
     };
