@@ -1,0 +1,29 @@
+{
+  "name": "plan_b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "nodemon": "nodemon app",
+    "prod": "cross-env NODE_ENV=prod node app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compose": "^4.1.0",
+    "koa-json-error": "^3.1.2",
+    "koa-parameter": "^3.0.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.18.4"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.1",
+    "dotenv": "^8.1.0",
+    "nodemon": "^1.19.2"
+  }
+}

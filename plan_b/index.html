@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height">
+    <title>Circle Packing</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;height:100%;margin:0;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<style>
+    #mountNode {
+        text-align: center;
+    }
+</style>
+<script>
+  $.getJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/flare.json', function(data) {
+    console.log(data);
+    const data2 = {
+      "name": "flare",
+      "children": [
+        
+        {
+          "name": "asdjfjksjd",
+          "children": [
+            {
+              "name": "FunctionSequence",
+              "value": 120
+            },
+            {
+              "name": "ISchedulable",
+              "value": 120
+            },
+            {
+              "name": "Parallel",
+              "value": 120
+            },
+            {
+              "name": "Pause",
+              "value": 120
+            },
+            {
+              "name": "Parallel2",
+              "value": 120
+            },
+            {
+              "name": "Pause123sadf",
+              "value": 120
+            },
+            {
+              "name": "Schedulersdf",
+              "value": 120
+            },
+            {
+              "name": "Sequenceasdf",
+              "value": 120
+            },
+            {
+              "name": "Transition",
+              "value": 120
+            },
+            {
+              "name": "Transitioner",
+              "value": 120
+            },
+            {
+              "name": "TransitionEvent",
+              "value": 120
+            },
+            {
+              "name": "Tween",
+              "value": 120
+            }
+          ]
+        },
+        {
+          "name": "Easing",
+          "children": [
+            {
+              "name": "asdfsadf",
+              "value": 100
+            },
+            {
+              "name": "sdfsdfsdf",
+              "value": 100
+            },
+            {
+              "name": "qdsafkjk",
+              "value": 100
+            },
+            {
+              "name": "asdjfk",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "name": "ISchedulableasdf89",
+          "children": [
+            {
+              "name": "FunctionSequence112",
+              "value": 120
+            },
+            {
+              "name": "ISchedulable3232",
+              "value": 120
+            },
+            {
+              "name": "Parallel232",
+              "value": 120
+            },
+            {
+              "name": "Paus454e",
+              "value": 120
+            },
+            {
+              "name": "Paral234lel",
+              "value": 120
+            },
+            {
+              "name": "Pause234",
+              "value": 120
+            },
+            {
+              "name": "Schedule234r",
+              "value": 120
+            },
+            {
+              "name": "Sequenc678e",
+              "value": 120
+            },
+            {
+              "name": "adf3454",
+              "value": 120
+            },
+            {
+              "name": "Transitioner45",
+              "value": 120
+            },
+            {
+              "name": "TransitionEventgjj",
+              "value": 120
+            },
+            {
+              "name": "Twegfgen",
+              "value": 120
+            }
+          ]
+        }
+      ]
+    };
+    data = data2;
+var dv = new DataSet.View().source(data, {
+      type: 'hierarchy'
+    });
+    dv.transform({
+      type: 'hierarchy.circle-packing'
+    });
+    var diameter = Math.min(window.innerWidth, window.innerHeight);
+    var chart = new G2.Chart({
+      container: 'mountNode',
+      height: diameter,
+      width: diameter,
+      padding: 10
+    });
+    chart.axis(false);
+    chart.legend(false);
+    chart.tooltip(false);
+
+    var nodes = dv.getAllNodes().map(function(node) {
+      console.log(node);
+      return {
+        hasChildren: !!(node.data.children && node.data.children.length),
+        name: node.data.name.split(/(?=[A-Z][^A-Z])/g).join('\n'),
+        value: node.value,
+        depth: node.depth,
+        x: node.x,
+        y: node.y,
+        r: node.r
+      };
+    });
+
+    chart.source(nodes);
+    chart.point().position('x*y').color('hasChildren').shape('circle').tooltip('name').active(false).size('r', function(r) {
+      return r * diameter;
+    }).color('r', 'rgb(252, 253, 191)-rgb(231, 82, 99)-rgb(183, 55, 121)').style({
+      stroke: 'rgb(183, 55, 121)'
+    }).label('name', {
+      offset: 0,
+      textStyle: function textStyle(text, item) {
+        if (item.hasChildren) {
+          return {
+            opacity: 0
+          };
+        }
+        return {
+          textBaseline: 'middle',
+          fill: 'grey',
+          fontSize: 9,
+          textAlign: 'center'
+        };
+      }
+    });
+    chart.render();
+  });
+</script>
+</body>
+</html>

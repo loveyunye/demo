@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    div {
+      border-radius: 50%;
+      background-color: rgba(0, 255, 0, 0.5);
+    }
+    .outer {
+      width: 600px;
+      height: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .level-1 {
+      width: 240px;
+      height: 240px;
+      background-color: rgba(255, 0, 0, 0.5);
+      position: absolute;
+      top: -120px;
+      left: -120px;
+    }
+    .child {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 255, 0.5);
+      /* display: none; */
+      position: absolute;
+      top: -20px;
+      left: -20px;
+    }
+    .first {
+      width: 140px;
+      height: 140px;
+      top: -70px;
+      left: -70px;
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="level-1 second">
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+    </div>
+    <div class="level-1 three">
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+    </div>
+    <div class="level-1 first">
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+    </div>
+  </div>
+  <script src="./circle.js"></script>
+</body>
+</html>
