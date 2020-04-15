@@ -3,14 +3,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import './assets/iconfont/style.css';
 import IndexPage from './router/IndexPage';
+import { Provider } from 'react-redux';
+import { store } from './reducers/user'
 
 function App() {
   return (
-      <Router>
-        <div style={style.container}>
-          <IndexPage/>
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <div style={style.container}>
+            <IndexPage/>
+          </div>
+        </Router>
+      </Provider>
   );
 }
 

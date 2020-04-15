@@ -1,6 +1,8 @@
 import React from 'react';
 import './HobbiesPage.less';
 import Card from './components/HobbiesCard';
+import { connect } from 'react-redux';
+import { actions } from '../../reducers/user';
 
 const cardList = [
   {
@@ -23,7 +25,7 @@ const cardList = [
   }
 ]
 
-export default class HobbiesPage extends React.Component{
+class HobbiesPage extends React.Component{
   
   constructor(props) {
     super(props);
@@ -41,6 +43,7 @@ export default class HobbiesPage extends React.Component{
       cardList: cardList3,
       step,
     });
+    this.props.increase();
   };
   back = () => {
     if(this.state.step !== 0) {
@@ -52,11 +55,13 @@ export default class HobbiesPage extends React.Component{
         cardList: cardList3,
         step,
       });
+      this.props.decrease();
     }
   };
   render() {
     return (
       <div className="hobbies-wrapper">
+        { this.props.number }
         {
           this.state.cardList.map( (item, index) => {
             return (
@@ -79,3 +84,22 @@ export default class HobbiesPage extends React.Component{
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    // prop : state.xxx  | 意思是将state中的某个数据映射到props中
+    number: state.count,
+  };
+};
+const mapDispatchToProps = (dispatch) => { // 默认传递参数就是dispatch
+  return {
+    increase: () => {
+      dispatch(actions.increase());
+    },
+    decrease: () => {
+      dispatch(actions.decrease());
+    },
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HobbiesPage);
