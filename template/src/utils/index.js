@@ -1,5 +1,6 @@
 /**
- * @name 拷贝
+ * 深度拷贝
+ * @param {Object} obj 拷贝对象
  */
 export const cloneDeep = function(obj) {
   function isObject(o) {
@@ -20,7 +21,7 @@ export const cloneDeep = function(obj) {
 };
 
 /**
- * Parse the time to string
+ * 格式化时间
  * @param {(Object|string|number)} time
  * @param {string} cFormat
  * @returns {string}

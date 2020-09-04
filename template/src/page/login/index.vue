@@ -4,7 +4,7 @@
       <div class="form-heander">后台模板</div>
       <el-form :model="form" :rules="rules" ref="form" label-width="60px">
         <el-form-item label="账号" prop="username">
-          <el-input v-model="form.username" placeholder="账号"></el-input>
+          <el-input v-model="form.username" placeholder="账号" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input

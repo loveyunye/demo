@@ -7,7 +7,7 @@ export default {
   state: {
     sideStatus: true, // 侧边栏状态
     tagRoutes: [], // 标签路由
-    navRoutes: [],
+    navRoutes: [], // 导航路由左侧
   },
   mutations: {
     setSideStatus(state, status) {
