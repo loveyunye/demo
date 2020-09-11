@@ -12,10 +12,10 @@ const viewRouters = [
         path: 'dashboard',
         component: () => import('@/views/index'),
         name: 'dashboard',
+        hidden: true,
         meta: {
           title: '首页',
           icon: 'el-icon-search',
-          hidden: true,
           affix: true,
         },
       },

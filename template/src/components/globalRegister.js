@@ -4,6 +4,8 @@
 import Vue from 'vue';
 
 import {
+  TabPane,
+  Tabs,
   Scrollbar,
   Button,
   // 表格信息
@@ -38,6 +40,8 @@ Vue.prototype.$confirm = MessageBox;
 Vue.prototype.$message = Message;
 
 [
+  TabPane,
+  Tabs,
   Scrollbar,
   Button,
   // 表格信息

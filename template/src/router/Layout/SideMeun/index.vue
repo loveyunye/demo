@@ -4,10 +4,9 @@
       <div class="side-wrapper" v-if="sideStatus">
         <el-menu
           :default-active="activeMenu"
-          :unique-opened="false"
+          :unique-opened="true"
           :collapse-transition="false"
           mode="vertical"
-          :v-if="sideStatus"
         >
           <sidebar-item
             v-for="route in viewRouters"
@@ -31,12 +30,7 @@ export default {
   computed: {
     ...mapState('page', ['sideStatus']),
     activeMenu() {
-      const route = this.$route;
-      const { meta, path } = route;
-      if (meta.activeMenu) {
-        return meta.activeMenu;
-      }
-      return path;
+      return this.$route.path;
     },
     viewRouters() {
       return viewRouters;
@@ -49,10 +43,42 @@ export default {
   width: 200px;
   height: 100%;
   overflow-x: hidden;
-  .el-menu {
+  /deep/ .el-menu {
     border-right: none;
+    // 文字大小
+    .el-submenu__title,
+    .el-menu-item {
+      font-size: 13px;
+    }
+
+    // 右侧下拉按钮调整
+    .el-submenu__icon-arrow {
+      font-size: 14px;
+      font-weight: 800;
+      transform: rotate(270deg);
+    }
+    .el-submenu.is-opened > .el-submenu__title .el-submenu__icon-arrow {
+      transform: rotate(360deg);
+    }
+
+    // item背景、文字装饰线
+    a {
+      text-decoration: none;
+    }
+    .el-menu-item.is-active {
+      background-color: rgba(102, 157, 255, 0.15);
+    }
+
+    // 展开样式
+    .el-submenu.is-opened {
+      & > .el-submenu__title,
+      & > .el-submenu__title i {
+        color: rgb(63, 126, 239);
+      }
+    }
   }
 }
+// 动画
 .side-fade-enter-active,
 .side-fade-leave-active {
   transition: width 0.4s;
@@ -61,15 +87,13 @@ export default {
 .side-fade-leave-to {
   width: 0;
 }
-
+// 滚动侧边栏样式
 /deep/ .scrollbar-wrapper {
   overflow-x: hidden !important;
 }
-
 .el-scrollbar__bar.is-vertical {
   right: 0px;
 }
-
 .el-scrollbar {
   height: 100%;
   box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
