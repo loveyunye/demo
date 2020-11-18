@@ -1,7 +1,7 @@
 <template>
   <div class="layout-wrapper">
     <header>
-      <HeaderA />
+      <!-- <HeaderA /> -->
     </header>
     <div class="container">
       <div class="menu">
@@ -9,7 +9,8 @@
       </div>
       <div class="main">
         <div class="page-nav">
-          <NavTag />
+          <HeaderA />
+          <!-- <NavTag /> -->
         </div>
         <div class="page-wrapper">
           <router-view />
@@ -22,13 +23,13 @@
 <script>
 import SideMeun from './SideMeun';
 import HeaderA from './HeaderA';
-import NavTag from './NavTag';
+// import NavTag from './NavTag';
 
 export default {
   name: 'layout-wrapper',
   components: {
     SideMeun,
-    NavTag,
+    // NavTag,
     HeaderA,
   },
 };
@@ -37,18 +38,18 @@ export default {
 <style lang="less" scoped>
 .layout-wrapper {
   header {
-    height: 60px;
-    line-height: 60px;
+    height: 20px;
+    line-height: 20px;
   }
   .container {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 20px);
     display: flex;
 
     & > div {
       height: 100%;
     }
     .menu {
-      padding-bottom: 24px;
+      padding-bottom: 20px;
       background-color: #f0f2f5;
     }
 
