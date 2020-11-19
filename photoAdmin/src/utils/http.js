@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
 
-const BASE_URL = '/';
+const BASE_URL = '/api';
 
 const instance = axios.create({
   baseURL: BASE_URL, // 设置统一请求地址
@@ -35,7 +35,7 @@ async function MetroApi(config = {}) {
     return res.data;
   } catch (err) {
     if (err.response.status === 401 && redirect_login) {
-      Message.error('无权限');
+      Message.error('登录过期，无权限');
     }
     throw err;
   }

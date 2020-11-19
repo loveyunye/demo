@@ -3,8 +3,8 @@
     <div class="form">
       <div class="form-heander">后台模板</div>
       <el-form :model="form" :rules="rules" ref="form" label-width="60px">
-        <el-form-item label="账号" prop="username">
-          <el-input v-model="form.username" placeholder="账号" />
+        <el-form-item label="账号" prop="account">
+          <el-input v-model="form.account" placeholder="账号" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input
@@ -26,17 +26,19 @@
 /**
  * 登录页
  */
+import { login } from '@/api/login';
+
 export default {
   name: 'login',
   data() {
     return {
       rules: {
-        username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
       form: {
         password: '',
-        username: '',
+        account: '',
       },
     };
   },
@@ -45,9 +47,13 @@ export default {
     loginHandler() {
       this.$refs.form.validate(async (valid) => {
         if (valid) {
-          console.log(valid);
-        } else {
-          return false;
+          login(this.form)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch(() => {
+              this.$message.error('账号密码错误');
+            });
         }
       });
     },
@@ -73,6 +79,10 @@ export default {
     button {
       width: 100%;
     }
+  }
+  /deep/ .el-button--primary {
+    background-color: #158bb8;
+    border-color: #158bb8;
   }
 }
 </style>

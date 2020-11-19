@@ -7,6 +7,7 @@ export const login = (data) =>
     method: 'POST',
     url: '/login',
     data,
+    redirect_login: false,
   });
 
 /**
