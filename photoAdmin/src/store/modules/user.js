@@ -16,9 +16,10 @@ export default {
       updatedAt: '2020-11-14T03:49:33.000Z',
       deletedAt: null,
     },
+    authorization: '',
   },
   mutations: {
-    setUser(state, user) {
+    setUser(state, { user }) {
       state.user = user;
     },
   },
