@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 export default {
   namespaced: true,
   state: {
@@ -16,11 +18,19 @@ export default {
       updatedAt: '2020-11-14T03:49:33.000Z',
       deletedAt: null,
     },
-    authorization: '',
+    authorization: 'qu167d306c0m126sz653sg87ho82696e',
   },
   mutations: {
-    setUser(state, { user }) {
+    setUser(state, { user, authorization }) {
       state.user = user;
+      state.authorization = authorization;
+      console.log(user, authorization);
+      Cookies.set('auth', authorization);
+    },
+    removerUser(state) {
+      state.user = {};
+      state.authorization = '';
+      Cookies.remove('auth');
     },
   },
   actions: {},

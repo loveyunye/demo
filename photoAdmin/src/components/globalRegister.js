@@ -36,7 +36,7 @@ import {
   Upload,
 } from 'element-ui';
 Vue.prototype.$ELEMENT = { size: 'small' };
-Vue.prototype.$confirm = MessageBox;
+Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$message = Message;
 
 [

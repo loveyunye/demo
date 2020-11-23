@@ -27,6 +27,7 @@
  * 登录页
  */
 import { login } from '@/api/login';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'login',
@@ -43,13 +44,15 @@ export default {
     };
   },
   methods: {
+    ...mapMutations('user', ['setUser']),
     // 登录操作
     loginHandler() {
       this.$refs.form.validate(async (valid) => {
         if (valid) {
           login(this.form)
             .then((res) => {
-              console.log(res);
+              this.setUser(res);
+              this.$router.push('/');
             })
             .catch(() => {
               this.$message.error('账号密码错误');
@@ -58,7 +61,6 @@ export default {
       });
     },
   },
-  mounted() {},
 };
 </script>
 <style lang="less" scoped>
