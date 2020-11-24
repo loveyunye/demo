@@ -1,5 +1,6 @@
 <template>
   <div class="work-wrapper page">
+    <!-- 搜索 -->
     <searchBar>
       <el-input placeholder="作品名、描述搜索" clearable v-model="params.key" />
       <el-button icon="el-icon-search" circle type="primary" @click="getList" />
@@ -8,6 +9,7 @@
         <el-button icon="el-icon-plus" circle />
       </div>
     </searchBar>
+    <!-- 内容 -->
     <div class="container">
       <el-table :max-height="maxH" :data="tableData" v-if="init">
         <el-table-column prop="name" label="作品名" align="center" />
@@ -27,6 +29,7 @@
         />
       </div>
     </div>
+    <!-- 抽屉 -->
   </div>
 </template>
 <script>

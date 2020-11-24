@@ -34,6 +34,7 @@ import {
   MessageBox,
   Message,
   Upload,
+  Drawer,
 } from 'element-ui';
 Vue.prototype.$ELEMENT = { size: 'small' };
 Vue.prototype.$confirm = MessageBox.confirm;
@@ -68,6 +69,7 @@ Vue.prototype.$message = Message;
   MenuItemGroup,
   // 消息框
   Dialog,
+  Drawer,
 ].forEach((item) => {
   Vue.use(item);
 });
