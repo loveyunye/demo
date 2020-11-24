@@ -16,17 +16,13 @@ export default {
   methods: {
     ...mapMutations('user', ['removerUser']),
     logout() {
-      this.$confirm('确定登出吗', '提示', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-      })
+      this.$confirm('确定登出吗', '提示')
         .then(async () => {
           await logout();
           this.removerUser();
           this.$router.push('/login');
         })
-        .catch();
+        .catch(() => {});
     },
   },
 };

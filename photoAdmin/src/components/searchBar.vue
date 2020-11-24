@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar-wrapper">
-    <div>
+    <div class="search">
       <slot />
     </div>
     <slot name="handler" />
@@ -17,5 +17,19 @@
   margin-bottom: 12px;
   align-items: center;
   padding: 0 10px;
+  /deep/ div.el-input {
+    display: inline-block;
+  }
+  .search {
+    display: flex;
+    & > div,
+    & > button {
+      margin-right: 16px;
+    }
+
+    /deep/ .el-button + .el-button {
+      margin-left: 0;
+    }
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
+import Cookies from 'js-cookie';
 
 const BASE_URL = '/api';
 
@@ -17,15 +18,19 @@ instance.interceptors.response.use(
   },
 );
 
+const authorization = Cookies.get('auth'); // 权限码
+console.log(authorization);
+
 async function MetroApi(config = {}) {
-  const {
-    method = 'post',
-    url = '',
-    data = {},
-    headers = {},
-    redirect_login = true,
-  } = config;
-  const opt = { data, url, method, headers };
+  const { method = 'get', url = '', data = {}, redirect_login = true } = config;
+  const opt = {
+    data,
+    url,
+    method,
+    headers: {
+      authorization,
+    },
+  };
 
   if (method.toLowerCase() === 'get') {
     opt.params = data;
@@ -36,6 +41,10 @@ async function MetroApi(config = {}) {
   } catch (err) {
     if (err.response.status === 401 && redirect_login) {
       Message.error('登录过期，无权限');
+      // Cookies.remove('auth');
+      // setTimeout(() => {
+      //   window.location.href = '/login';
+      // }, 1500);
     }
     throw err;
   }

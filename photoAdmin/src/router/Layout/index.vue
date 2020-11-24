@@ -12,7 +12,7 @@
           <HeaderA />
           <!-- <NavTag /> -->
         </div>
-        <div class="page-wrapper">
+        <div class="layout-page-wrapper">
           <router-view />
         </div>
       </div>
@@ -59,7 +59,7 @@ export default {
       .page-nav {
         height: 40px;
       }
-      .page-wrapper {
+      .layout-page-wrapper {
         height: calc(100% - 40px);
         background-color: #f0f2f5;
         padding: 10px;

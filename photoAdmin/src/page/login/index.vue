@@ -38,8 +38,8 @@ export default {
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
       form: {
-        password: '',
-        account: '',
+        password: '123456',
+        account: 'admin11',
       },
     };
   },
@@ -52,7 +52,10 @@ export default {
           login(this.form)
             .then((res) => {
               this.setUser(res);
-              this.$router.push('/');
+              this.$message.success('登录成功');
+              setTimeout(() => {
+                window.location.href = '/';
+              }, 1000);
             })
             .catch(() => {
               this.$message.error('账号密码错误');
