@@ -2,6 +2,7 @@
  * 全局组件注册
  */
 import Vue from 'vue';
+import { parseTime } from '../utils';
 
 import {
   TabPane,
@@ -35,6 +36,7 @@ import {
   Message,
   Upload,
   Drawer,
+  Loading,
 } from 'element-ui';
 Vue.prototype.$ELEMENT = { size: 'small' };
 Vue.prototype.$confirm = MessageBox.confirm;
@@ -72,6 +74,15 @@ Vue.prototype.$message = Message;
   Drawer,
 ].forEach((item) => {
   Vue.use(item);
+});
+
+// 注册loading
+Vue.use(Loading.directive);
+
+Vue.directive('format', {
+  bind: function(el, binding) {
+    el.innerHTML = parseTime(binding.value, '{y}-{m}-{d} {h}:{i}');
+  },
 });
 
 const requireComponent = require.context('.', true, /^\S+\.vue$/);

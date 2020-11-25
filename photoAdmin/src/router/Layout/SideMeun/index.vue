@@ -42,6 +42,7 @@ export default {
 .side-wrapper {
   width: 200px;
   height: 100%;
+  transition: width 0.4s;
   overflow-x: hidden;
   /deep/ .el-menu {
     border-right: none;
@@ -78,6 +79,17 @@ export default {
     }
   }
 }
+@media (max-width: 1000px) {
+  .side-wrapper {
+    width: 64px;
+    .el-menu {
+      /deep/ .el-menu-item span {
+        display: none !important;
+      }
+    }
+  }
+}
+
 // 动画
 .side-fade-enter-active,
 .side-fade-leave-active {

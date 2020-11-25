@@ -41,10 +41,10 @@ async function MetroApi(config = {}) {
   } catch (err) {
     if (err.response.status === 401 && redirect_login) {
       Message.error('登录过期，无权限');
-      // Cookies.remove('auth');
-      // setTimeout(() => {
-      //   window.location.href = '/login';
-      // }, 1500);
+      Cookies.remove('auth');
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 1500);
     }
     throw err;
   }

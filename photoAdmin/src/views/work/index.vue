@@ -6,17 +6,53 @@
       <el-button icon="el-icon-search" circle type="primary" @click="getList" />
       <el-button icon="el-icon-refresh" circle @click="reset" />
       <div slot="handler">
-        <el-button icon="el-icon-plus" circle />
+        <el-button icon="el-icon-plus" circle type="success" plain />
       </div>
     </searchBar>
     <!-- 内容 -->
-    <div class="container">
+    <div class="container" v-loading="loading">
       <el-table :max-height="maxH" :data="tableData" v-if="init">
         <el-table-column prop="name" label="作品名" align="center" />
-        <el-table-column prop="choose" label="客户可选数" align="center" />
-        <el-table-column prop="mask" label="姓名" align="center" />
-        <el-table-column prop="describe" label="描述" align="center" />
-        <el-table-column prop="address" label="操作" align="center" />
+        <el-table-column prop="choose" label="可选数" align="center" />
+        <el-table-column label="封面" align="center">
+          <template slot-scope="scope">
+            <img :src="scope.row.mask" alt="" class="work-mask" />
+          </template>
+        </el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          prop="describe"
+          label="描述"
+          align="center"
+        />
+        <el-table-column
+          prop="updatedAt"
+          width="140px"
+          align="center"
+          label="更新时间"
+        >
+          <template slot-scope="scope">
+            <span v-format="scope.row.updatedAt"></span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center" width="100px">
+          <template slot-scope="scope">
+            <el-button
+              icon="el-icon-edit"
+              circle
+              @click="edit(scope.row)"
+              type="primary"
+              plain
+            />
+            <el-button
+              icon="el-icon-delete"
+              circle
+              @click="del(scope.row)"
+              type="danger"
+              plain
+            />
+          </template>
+        </el-table-column>
       </el-table>
       <div class="bottom">
         <el-pagination
@@ -33,7 +69,7 @@
   </div>
 </template>
 <script>
-import { list } from '@/api/work';
+import { list, del } from '@/api/work';
 import { cloneDeep } from '@/utils';
 
 const params = {
@@ -51,13 +87,28 @@ export default {
       total: 0,
       maxH: 0,
       init: false,
+      loading: false,
     };
   },
   methods: {
+    edit(row) {
+      console.log(row);
+    },
+    del(row) {
+      this.$confirm('确定删除吗', '提示')
+        .then(async () => {
+          this.loading = true;
+          await del(row.id);
+          this.getList();
+        })
+        .catch(() => {});
+    },
     async getList() {
+      this.loading = true;
       const res = await list(this.params);
       this.tableData = res.records;
       this.total = res.total;
+      this.loading = false;
     },
     currentChange(page) {
       this.params.page = page;
@@ -93,5 +144,10 @@ export default {
       padding: 16px 0;
     }
   }
+}
+.work-mask {
+  cursor: pointer;
+  height: 36px;
+  object-fit: cover;
 }
 </style>
