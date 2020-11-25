@@ -16,7 +16,8 @@
         <el-table-column prop="choose" label="可选数" align="center" />
         <el-table-column label="封面" align="center">
           <template slot-scope="scope">
-            <img :src="scope.row.mask" alt="" class="work-mask" />
+            <!-- <img :src="scope.row.mask" alt="" class="work-mask" /> -->
+            <img-preview :src="scope.row.mask" class="work-mask" />
           </template>
         </el-table-column>
         <el-table-column
