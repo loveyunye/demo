@@ -8,53 +8,70 @@ export default {
       type: String,
       required: true,
     },
+    screen: {
+      type: Number,
+      default: 0.8,
+    },
+    noZoom: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      visible: false,
       img: null,
       mask: null,
+      image: null, // 图片对象
+      zoom: 1,
     };
   },
   methods: {
     privew() {
-      this.visible = !this.visible;
-      console.log(this.visible, this.visible ? 'display' : 'none');
-      if (!this.src) {
+      const image = new Image();
+      image.src = this.src;
+      if (!this.src || image.width === 0 || image.height === 0) {
         this.$message.error('图片资源无效');
         return;
       }
-      const image = new Image();
-      image.src = this.src;
-      this.img.src = this.src;
-      this.mask.style.display = this.visible ? 'block' : 'none';
-      this.img.style.display = this.visible ? 'block' : 'none';
-      // console.log(this.visible ? 'display' : 'none');
-      // image.onload = () => {
-      //   console.log(image.width);
-      //   console.log(image.height);
-      //   img.height = image.height + 'px';
-      //   img.width = image.width + 'px';
-      // };
+      const img = this.init(this.src);
+      this.setZoom(image, img);
     },
-    init() {
+    // 设置zoom
+    setZoom(image, img) {
+      const hRatio = image.height / document.body.clientHeight;
+      const wRatio = image.width / document.body.clientWidth;
+
+      const ratio = hRatio > wRatio ? hRatio : wRatio;
+      this.zoom = this.screen / ratio;
+
+      img.style.height = image.height * (this.noZoom ? 1 : this.zoom) + 'px';
+      img.style.width = image.width * (this.noZoom ? 1 : this.zoom) + 'px';
+    },
+    // 初始化 img
+    init(src) {
       let mask = document.querySelector('#priview-mask');
       if (!mask) {
         mask = document.createElement('div');
         document.body.append(mask);
         mask.id = 'priview-mask';
       }
-      this.mask = mask;
-      if (!this.img) {
-        this.img = document.createElement('img');
-        mask.append(this.img);
+      let img = mask.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        mask.append(img);
       }
+      img.src = src;
+      mask.style.display = 'block';
+      img.style.display = 'block';
+      if (!window.priviewImgClickListener) {
+        window.priviewImgClickListener = true;
+        img.addEventListener('click', () => {
+          mask.style.display = 'none';
+          img.style.display = 'none';
+        });
+      }
+      return img;
     },
-  },
-  mounted() {
-    this.init();
-    this.img.style.display = this.visible ? 'block' : 'none';
-    this.mask.style.display = this.visible ? 'display' : 'none';
   },
 };
 </script>

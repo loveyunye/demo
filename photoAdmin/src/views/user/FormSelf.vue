@@ -16,10 +16,7 @@
       <el-form-item label="作品名" prop="name">
         <el-input style="width: 200px" v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="可选数量" prop="choose">
-        <el-input-number style="width: 200px" v-model="form.choose" :min="1" />
-      </el-form-item>
-      <el-form-item label="封面" prop="mask">
+      <el-form-item label="头像" prop="avatarUrl">
         <div>
           <el-switch v-model="link" active-text="上传" inactive-text="链接" />
         </div>
@@ -33,7 +30,7 @@
           accept="image/*"
           name="image"
         >
-          <img v-if="form.mask" :src="form.mask" class="avatar" />
+          <img v-if="form.avatarUrl" :src="form.avatarUrl" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
         <el-input v-else v-model="form.mask"></el-input>
@@ -52,11 +49,19 @@
 import { cloneDeep } from '@/utils';
 
 const formTmp = {
-  id: '',
-  name: '',
-  choose: 20,
-  mask: '',
-  describe: '',
+  id: 3,
+  name: '名称223112212',
+  avatarUrl:
+    'http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_265eafa355fd9faec680f2ca0a665d43.png',
+  gender: 0,
+  city: '南昌',
+  openId: '221sssss3',
+  password: null,
+  account: '',
+  type: 'normal',
+  createdAt: '2020-11-25T11:24:52.000Z',
+  updatedAt: '2020-11-25T11:24:52.000Z',
+  deletedAt: null,
 };
 
 export default {

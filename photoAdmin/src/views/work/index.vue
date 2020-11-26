@@ -6,7 +6,13 @@
       <el-button icon="el-icon-search" circle type="primary" @click="getList" />
       <el-button icon="el-icon-refresh" circle @click="reset" />
       <div slot="handler">
-        <el-button icon="el-icon-plus" circle type="success" plain />
+        <el-button
+          icon="el-icon-plus"
+          circle
+          type="success"
+          plain
+          @click="editOrAdd(false)"
+        />
       </div>
     </searchBar>
     <!-- 内容 -->
@@ -16,7 +22,6 @@
         <el-table-column prop="choose" label="可选数" align="center" />
         <el-table-column label="封面" align="center">
           <template slot-scope="scope">
-            <!-- <img :src="scope.row.mask" alt="" class="work-mask" /> -->
             <img-preview :src="scope.row.mask" class="work-mask" />
           </template>
         </el-table-column>
@@ -41,7 +46,7 @@
             <el-button
               icon="el-icon-edit"
               circle
-              @click="edit(scope.row)"
+              @click="editOrAdd(scope.row)"
               type="primary"
               plain
             />
@@ -67,11 +72,14 @@
       </div>
     </div>
     <!-- 抽屉 -->
+    <FormSelf ref="form" @submit="submit" />
   </div>
 </template>
 <script>
-import { list, del } from '@/api/work';
+// import { list, del } from '@/api/work';
+import { list, del, edit, create } from '@/api/work';
 import { cloneDeep } from '@/utils';
+import FormSelf from './FormSelf';
 
 const params = {
   size: 10,
@@ -81,6 +89,7 @@ const params = {
 
 export default {
   name: 'work-wrapper',
+  components: { FormSelf },
   data() {
     return {
       tableData: [],
@@ -92,8 +101,17 @@ export default {
     };
   },
   methods: {
-    edit(row) {
-      console.log(row);
+    async submit(form, isNew) {
+      if (isNew) {
+        await create(form);
+      } else {
+        await edit(form);
+      }
+      this.$refs.form.close();
+      this.getList();
+    },
+    editOrAdd(row) {
+      this.$refs.form.setData(row);
     },
     del(row) {
       this.$confirm('确定删除吗', '提示')

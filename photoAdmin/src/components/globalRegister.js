@@ -25,6 +25,7 @@ import {
   Select,
   RadioButton,
   InputNumber,
+  Switch,
   // 菜单
   Menu,
   MenuItem,
@@ -64,6 +65,7 @@ Vue.prototype.$message = Message;
   Upload,
   RadioButton,
   InputNumber,
+  Switch,
   // 菜单
   Menu,
   MenuItem,
