@@ -1,5 +1,5 @@
 <template>
-  <div class="work-wrapper page">
+  <div class="page">
     <!-- 搜索 -->
     <searchBar>
       <el-input placeholder="作品名、描述搜索" clearable v-model="params.key" />
@@ -22,7 +22,7 @@
         <el-table-column prop="choose" label="可选数" align="center" />
         <el-table-column label="封面" align="center">
           <template slot-scope="scope">
-            <img-preview :src="scope.row.mask" class="work-mask" />
+            <img-preview :src="scope.row.mask" class="preview-img" />
           </template>
         </el-table-column>
         <el-table-column
@@ -41,8 +41,14 @@
             <span v-format="scope.row.updatedAt"></span>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="center" width="100px">
+        <el-table-column label="操作" align="center" width="140px">
           <template slot-scope="scope">
+            <el-button
+              icon="el-icon-view"
+              circle
+              @click="editOrAdd(scope.row)"
+              plain
+            />
             <el-button
               icon="el-icon-edit"
               circle
@@ -71,12 +77,11 @@
         />
       </div>
     </div>
-    <!-- 抽屉 -->
+    <!-- 弹窗 -->
     <FormSelf ref="form" @submit="submit" />
   </div>
 </template>
 <script>
-// import { list, del } from '@/api/work';
 import { list, del, edit, create } from '@/api/work';
 import { cloneDeep } from '@/utils';
 import FormSelf from './FormSelf';
@@ -88,7 +93,7 @@ const params = {
 };
 
 export default {
-  name: 'work-wrapper',
+  name: '',
   components: { FormSelf },
   data() {
     return {
@@ -108,7 +113,7 @@ export default {
         await edit(form);
       }
       this.$refs.form.close();
-      this.getList();
+      this.reset();
     },
     editOrAdd(row) {
       this.$refs.form.setData(row);
@@ -164,7 +169,7 @@ export default {
     }
   }
 }
-.work-mask {
+.preview-img {
   cursor: pointer;
   height: 36px;
   object-fit: cover;

@@ -28,7 +28,7 @@
           class="avatar-uploader"
           action="/api/upload"
           :show-file-list="false"
-          :on-success="handleAvatarSuccess"
+          :on-success="handleSuccess"
           :before-upload="beforeUpload"
           accept="image/*"
           name="image"
@@ -98,7 +98,7 @@ export default {
         }
       });
     },
-    handleAvatarSuccess(res) {
+    handleSuccess(res) {
       this.form.mask = res.url;
     },
     beforeUpload(file) {

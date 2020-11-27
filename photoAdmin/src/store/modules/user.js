@@ -24,7 +24,6 @@ export default {
     setUser(state, { user, authorization }) {
       state.user = user;
       state.authorization = authorization;
-      console.log(user, authorization);
       Cookies.set('auth', authorization);
     },
     removerUser(state) {

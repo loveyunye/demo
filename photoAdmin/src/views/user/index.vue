@@ -2,7 +2,12 @@
   <div class="page">
     <!-- 搜索 -->
     <searchBar>
-      <el-input placeholder="作品名、描述搜索" clearable v-model="params.key" />
+      <el-input placeholder="用户名搜索" clearable v-model="params.key" />
+      <el-select v-model="params.type" placeholder="类型">
+        <el-option label="全部" value="" />
+        <el-option label="普通" value="normal" />
+        <el-option label="运营" value="mobile-admin" />
+      </el-select>
       <el-button icon="el-icon-search" circle type="primary" @click="getList" />
       <el-button icon="el-icon-refresh" circle @click="reset" />
       <div slot="handler">
@@ -20,9 +25,19 @@
       <el-table :max-height="maxH" :data="tableData" v-if="init">
         <el-table-column prop="name" label="用户名" align="center" />
         <el-table-column prop="city" label="城市" align="center" />
+        <el-table-column label="性别" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.gender === 0 ? '女' : '男' }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="类型" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.type === 'normal' ? '普通' : '运营' }}</span>
+          </template>
+        </el-table-column>
         <el-table-column label="头像" align="center">
           <template slot-scope="scope">
-            <img-preview :src="scope.row.avatarUrl" class="work-mask" />
+            <img-preview :src="scope.row.avatarUrl" class="preview-img" />
           </template>
         </el-table-column>
         <el-table-column
@@ -65,7 +80,7 @@
         />
       </div>
     </div>
-    <!-- 抽屉 -->
+    <!-- 弹窗 -->
     <FormSelf ref="form" @submit="submit" />
   </div>
 </template>
@@ -78,6 +93,7 @@ const params = {
   size: 10,
   page: 1,
   key: '',
+  type: '',
 };
 
 export default {
@@ -100,7 +116,7 @@ export default {
         await edit(form);
       }
       this.$refs.form.close();
-      this.getList();
+      this.reset();
     },
     editOrAdd(row) {
       this.$refs.form.setData(row);
@@ -156,7 +172,7 @@ export default {
     }
   }
 }
-.work-mask {
+.preview-img {
   cursor: pointer;
   height: 36px;
   object-fit: cover;

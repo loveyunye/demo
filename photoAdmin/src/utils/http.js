@@ -19,7 +19,6 @@ instance.interceptors.response.use(
 );
 
 const authorization = Cookies.get('auth'); // 权限码
-console.log(authorization);
 
 async function MetroApi(config = {}) {
   const { method = 'get', url = '', data = {}, redirect_login = true } = config;

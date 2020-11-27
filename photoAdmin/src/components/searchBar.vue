@@ -31,5 +31,9 @@
       margin-left: 0;
     }
   }
+  .el-input,
+  .el-select {
+    width: 160px;
+  }
 }
 </style>

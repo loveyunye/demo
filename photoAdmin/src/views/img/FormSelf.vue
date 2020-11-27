@@ -13,25 +13,13 @@
       label-width="80px"
       class="demo-ruleForm"
     >
-      <el-form-item label="姓名" prop="name">
+      <el-form-item label="图片名" prop="name">
         <el-input style="width: 200px" v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="城市" prop="name">
-        <el-input style="width: 200px" v-model="form.city"></el-input>
-      </el-form-item>
-      <el-form-item label="性别" prop="gender">
-        <el-select v-model="form.gender">
-          <el-option label="女" :value="0" />
-          <el-option label="男" :value="1" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="类型" prop="type">
-        <el-select v-model="form.type">
-          <el-option label="普通" value="normal" />
-          <el-option label="运营" value="mobile-admin" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="头像" prop="avatarUrl">
+      <el-form-item label="路径" prop="path">
+        <div>
+          <el-switch v-model="link" active-text="上传" inactive-text="链接" />
+        </div>
         <el-upload
           v-if="!link"
           class="avatar-uploader"
@@ -42,10 +30,10 @@
           accept="image/*"
           name="image"
         >
-          <img v-if="form.avatarUrl" :src="form.avatarUrl" class="avatar" />
+          <img v-if="form.path" :src="form.path" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
-        <el-input v-else v-model="form.mask"></el-input>
+        <el-input v-else v-model="form.path"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="visible = false">取消</el-button>
@@ -58,13 +46,8 @@
 import { cloneDeep } from '@/utils';
 
 const formTmp = {
-  name: '名称223112212',
-  avatarUrl:
-    'http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_265eafa355fd9faec680f2ca0a665d43.png',
-  gender: 0,
-  city: '南昌',
-  password: null,
-  type: 'normal',
+  name: '',
+  path: '',
 };
 
 export default {
@@ -78,14 +61,18 @@ export default {
       form: cloneDeep(formTmp),
       rules: {
         name: [{ required: true, message: '请输入作品名', trigger: 'blur' }],
-        avatarUrl: [{ required: true, message: '请上传封面', trigger: 'blur' }],
+        path: [{ required: true, message: '请上传封面', trigger: 'blur' }],
       },
     };
   },
   methods: {
-    setData(form) {
+    setData(form, more = {}) {
       this.status = form ? 'edit' : 'add';
       this.form = form ? { ...form } : cloneDeep(formTmp);
+      this.form = {
+        ...this.form,
+        ...more,
+      };
       this.visible = true;
       this.$nextTick(() => {
         this.$refs.form.clearValidate();
@@ -106,7 +93,7 @@ export default {
       });
     },
     handleSuccess(res) {
-      this.form.avatarUrl = res.url;
+      this.form.path = res.url;
     },
     beforeUpload(file) {
       const isLt2M = file.size / 1024 / 1024 < 2;
