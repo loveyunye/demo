@@ -4,13 +4,17 @@
     :visible.sync="visible"
     width="400px"
     :close-on-click-modal="false"
+    v-loading="loading"
   >
     <el-upload
       class="upload-demo"
       drag
-      action="https://jsonplaceholder.typicode.com/posts/"
+      :action="action"
       :on-success="handleSuccess"
       :before-upload="beforeUpload"
+      name="file"
+      accept="application/zip"
+      v-if="visible"
     >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -24,34 +28,22 @@
   </el-dialog>
 </template>
 <script>
-import { cloneDeep } from '@/utils';
-
-const formTmp = {
-  id: '',
-  name: '',
-  choose: 20,
-  mask: '',
-  describe: '',
-};
-
 export default {
   data() {
     return {
       visible: false,
-      link: false,
       loading: false,
-      status: 'add',
-      titleEnum: { add: '新增', edit: '修改' },
-      form: cloneDeep(formTmp),
-      rules: {
-        name: [{ required: true, message: '请输入作品名', trigger: 'blur' }],
-        mask: [{ required: true, message: '请上传封面', trigger: 'blur' }],
-        choose: [{ required: true, message: '请填写可选数', trigger: 'blur' }],
-      },
+      workId: '',
     };
   },
+  computed: {
+    action() {
+      return `/api/imgs/upload/${this.workId}`;
+    },
+  },
   methods: {
-    setData() {
+    open(workId) {
+      this.workId = workId;
       this.visible = true;
     },
     close() {
@@ -69,14 +61,18 @@ export default {
       });
     },
     handleSuccess(res) {
-      this.form.mask = res.url;
+      this.$message.success(`成功上传，新增${res}张图片`);
+      this.loading = false;
+      this.visible = false;
+      this.$emit('success');
     },
     beforeUpload(file) {
-      const isLt2M = file.size / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        this.$message.error('图片大小不能超过 2MB!');
+      const isLt100M = file.size / 1024 / 1024 < 100;
+      if (!isLt100M) {
+        this.$message.error('图片大小不能超过 100MB!');
       }
-      return isLt2M;
+      this.loading = true;
+      return isLt100M;
     },
   },
 };

@@ -76,7 +76,7 @@
     </div>
     <!-- 弹窗 -->
     <FormSelf ref="form" @submit="submit" />
-    <UploadZip ref="upload" @submit="submit" />
+    <UploadZip ref="upload" @submit="submit" @success="success" />
   </div>
 </template>
 <script>
@@ -107,6 +107,10 @@ export default {
     };
   },
   methods: {
+    success() {
+      this.params.page = 1;
+      this.getList();
+    },
     async submit(form, isNew) {
       if (isNew) {
         await create(form);

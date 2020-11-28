@@ -100,6 +100,7 @@ export default {
       if (!isLt2M) {
         this.$message.error('图片大小不能超过 2MB!');
       }
+      this.form.name = file.name;
       return isLt2M;
     },
   },
