@@ -46,7 +46,7 @@
             <el-button
               icon="el-icon-view"
               circle
-              @click="editOrAdd(scope.row)"
+              @click="look(scope.row)"
               plain
             />
             <el-button
@@ -106,6 +106,9 @@ export default {
     };
   },
   methods: {
+    look(row) {
+      this.$router.push(`/work/detail?id=${row.id}`);
+    },
     async submit(form, isNew) {
       if (isNew) {
         await create(form);

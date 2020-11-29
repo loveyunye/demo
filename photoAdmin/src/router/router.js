@@ -32,6 +32,13 @@ const viewRouters = [
         name: 'work-index',
         meta: { title: '作品', icon: 'el-icon-camera-solid', fixed: true },
       },
+      {
+        path: 'detail',
+        component: () => import('@/views/work/detail'),
+        hidden: true,
+        name: 'work-detail',
+        meta: { title: '详情', icon: 'el-icon-camera-solid', fixed: true },
+      },
     ],
   },
   {
@@ -59,6 +66,13 @@ const viewRouters = [
         component: () => import('@/views/user'),
         name: 'user-index',
         meta: { title: '用户', icon: 'el-icon-user-solid', fixed: true },
+      },
+      {
+        path: 'detail',
+        component: () => import('@/views/user/detail'),
+        hidden: true,
+        name: 'user-detail',
+        meta: { title: '详情', icon: 'el-icon-camera-solid', fixed: true },
       },
     ],
   },
