@@ -21,3 +21,13 @@ export const edit = (data) =>
  */
 export const create = (data) =>
   MetroApi({ url: '/works', method: 'POST', data });
+
+/**
+ * @name 详情
+ */
+export const detail = (id) => MetroApi({ url: `/works/detail/${id}` });
+
+/**
+ * @name 关联
+ */
+export const link = (id) => MetroApi({ url: `/works/link/${id}` });
