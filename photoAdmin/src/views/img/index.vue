@@ -76,7 +76,7 @@
     </div>
     <!-- 弹窗 -->
     <FormSelf ref="form" @submit="submit" />
-    <UploadZip ref="upload" @submit="submit" @success="success" />
+    <UploadZip ref="upload" @success="success" />
   </div>
 </template>
 <script>

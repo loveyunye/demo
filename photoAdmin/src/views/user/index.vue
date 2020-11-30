@@ -50,8 +50,14 @@
             <span v-format="scope.row.updatedAt"></span>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="center" width="100px">
+        <el-table-column label="操作" align="center" width="140px">
           <template slot-scope="scope">
+            <el-button
+              icon="el-icon-view"
+              circle
+              @click="look(scope.row)"
+              plain
+            />
             <el-button
               icon="el-icon-edit"
               circle
@@ -109,6 +115,9 @@ export default {
     };
   },
   methods: {
+    look(row) {
+      this.$router.push(`/user/detail?id=${row.id}`);
+    },
     async submit(form, isNew) {
       if (isNew) {
         await create(form);

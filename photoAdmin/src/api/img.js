@@ -23,11 +23,6 @@ export const create = (data) =>
   MetroApi({ url: '/imgs', method: 'POST', data });
 
 /**
- * @name 所有用户
- */
-export const allUser = () => MetroApi({ url: '/users/all' });
-
-/**
  * @name 所有作品
  */
 export const allWork = () => MetroApi({ url: '/works/all' });

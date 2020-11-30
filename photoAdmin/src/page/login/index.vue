@@ -39,7 +39,7 @@ export default {
       },
       form: {
         password: '123456',
-        account: 'admin11',
+        account: 'admin',
       },
     };
   },

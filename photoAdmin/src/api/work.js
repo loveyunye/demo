@@ -30,4 +30,9 @@ export const detail = (id) => MetroApi({ url: `/works/detail/${id}` });
 /**
  * @name 关联
  */
-export const link = (id) => MetroApi({ url: `/works/link/${id}` });
+export const link = (id, userId, link = true) =>
+  MetroApi({
+    url: `/works/link/${id}`,
+    data: { userId, link },
+    method: 'POST',
+  });
