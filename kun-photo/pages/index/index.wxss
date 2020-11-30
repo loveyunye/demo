@@ -1,0 +1,43 @@
+.banner {
+  height: 240rpx;
+  background-color: #158bb8;
+  text-align: center;
+  line-height: 240rpx;
+  color: #ffffff;
+  font-size: 32rpx;
+}
+
+.item {
+  padding: 20rpx;
+  background-color: #ffffff;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+.item .text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20rpx;
+  padding-left: 30rpx;
+}
+.text .title {
+  font-size: 32rpx;
+  font-weight: 800;
+}
+.text::before {
+  position: absolute;
+  left: 0;
+  content: " ";
+  width: 10rpx;
+  height: 24rpx;
+  background-color: #126e82;
+  float: left;
+}
+
+image {
+  width: 100rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}

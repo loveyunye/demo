@@ -1,0 +1,4 @@
+<!--components/authCom/authCom.wxml-->
+<view>
+  <button class="{{disabled ? 'disabled' : ''}}" hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">保存</button>
+</view>
