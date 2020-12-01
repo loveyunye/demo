@@ -3,31 +3,52 @@
 const app = getApp()
 
 Page({
-  data: {
-    works: [
-      {
-        id: 1222,
-        title: '早期作品',
-        date: '2020-11-09',
-        imgs: [
-          'https://szhz.huzhou.gov.cn/image/80971360456794112.jpg',
-          'https://szhz.huzhou.gov.cn/image/81364588767059968.jpg',
-          'https://szhz.huzhou.gov.cn/image/81364588767059968.jpg',
-        ]
-      },
-      {
-        id: 1222,
-        title: '后期作品',
-        date: '2020-11-20',
-        imgs: [
-          'https://szhz.huzhou.gov.cn/image/80971360456794112.jpg',
-          'https://szhz.huzhou.gov.cn/image/81364588767059968.jpg',
-          'https://szhz.huzhou.gov.cn/image/81364588767059968.jpg',
-        ]
-      }
-    ]
-  },
   onLoad: function () {
     
   },
+  data: {
+    background: [
+      {
+        text: 'demo-1',
+        src:'https://img.chainnews.com/material/images/0ae9b81f644d6589ca5c2bee9ef6c4d5.jpg-article'
+      },
+      {
+        text: 'demo-2',
+        src: 'http://nazacitydo.oss-cn-hangzhou.aliyuncs.com/ia_200000287.jpg'
+      },
+      {
+        text: 'demo-3',
+        src: 'http://nazacitydo.oss-cn-hangzhou.aliyuncs.com/ia_100000000790.jpg'
+      }
+    ],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: true,
+    interval: 3000,
+    duration: 500
+  },
+
+  changeIndicatorDots() {
+    this.setData({
+      indicatorDots: !this.data.indicatorDots
+    })
+  },
+
+  changeAutoplay() {
+    this.setData({
+      autoplay: !this.data.autoplay
+    })
+  },
+
+  intervalChange(e) {
+    this.setData({
+      interval: e.detail.value
+    })
+  },
+
+  durationChange(e) {
+    this.setData({
+      duration: e.detail.value
+    })
+  }
 })

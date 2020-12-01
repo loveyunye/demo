@@ -1,2 +1,16 @@
-<!--pages/work/work.wxml-->
-<text>pages/work/work.wxml</text>
+<!--index.wxml-->
+<view class="container">
+  
+  <view class="banner">背景</view>
+  <view class="item" wx:for="{{works}}" wx:key="*this">
+    <view class="text">
+      <text class="title">{{ item.title }}</text>
+      <text class="date">{{ item.date }}</text>
+    </view>
+    <view>
+      <block class="img" wx:for="{{item.imgs}}" wx:key="item">
+        <image src="{{item}}" mode="cover"></image>
+      </block>
+    </view>
+  </view>
+</view>

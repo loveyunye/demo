@@ -1,15 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="banner">背景</view>
-  <view class="item" wx:for="{{works}}" wx:key="*this">
-    <view class="text">
-      <text class="title">{{ item.title }}</text>
-      <text class="date">{{ item.date }}</text>
-    </view>
-    <view>
-      <block class="img" wx:for="{{item.imgs}}" wx:key="item">
-        <image src="{{item}}" mode="cover"></image>
-      </block>
-    </view>
+  <swiper
+    indicator-dots="true"
+    circular="true"
+    autoplay="true"
+    interval="2500"
+    duration="500"
+    indicator-color="rgba(255, 255, 255, 0.35)"
+    indicator-active-color="rgba(255, 255, 255, 0.9)"
+  >
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item {{item}}">
+          <image mode="aspectFill" src="{{item.src}}"></image>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view>
+    <view></view>
   </view>
 </view>
