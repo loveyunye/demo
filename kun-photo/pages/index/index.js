@@ -34,21 +34,40 @@ Page({
     })
   },
 
-  changeAutoplay() {
-    this.setData({
-      autoplay: !this.data.autoplay
+  openLocation() {
+    wx.openLocation({
+      latitude: 39.912432,
+      longitude: 116.470235,
+      name: '正邦集团',
+      address: '吉安市吉州区禾埠街道井冈山大道吉安市商会大厦122号',
+      success (res) {
+        if (res.confirm) {
+          console.log(res);
+        }
+      },
+      fail (res) {
+        console.log(res.errMsg);
+      },
+      complete () {
+        wx.hideKeyboard();
+      },
     })
   },
 
-  intervalChange(e) {
-    this.setData({
-      interval: e.detail.value
-    })
-  },
-
-  durationChange(e) {
-    this.setData({
-      duration: e.detail.value
-    })
+  download() {
+    wx.makePhoneCall({
+      phoneNumber: '15879067853',
+      success (res) {
+        if (res.confirm) {
+          console.log(res);
+        }
+      },
+      fail (res) {
+        console.log(res.errMsg);
+      },
+      complete () {
+        wx.hideKeyboard();
+      },
+    });
   }
 })

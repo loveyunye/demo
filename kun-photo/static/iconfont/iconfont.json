@@ -1,0 +1,44 @@
+{
+  "id": "2239760",
+  "name": "photograhy",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "911001",
+      "name": "phone",
+      "font_class": "phone",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "15167676",
+      "name": "location",
+      "font_class": "location_1",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "348318",
+      "name": "camera",
+      "font_class": "camera",
+      "unicode": "ea20",
+      "unicode_decimal": 59936
+    },
+    {
+      "icon_id": "433845",
+      "name": "person",
+      "font_class": "person",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "718863",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    }
+  ]
+}

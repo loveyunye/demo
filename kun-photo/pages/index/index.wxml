@@ -17,7 +17,13 @@
       </swiper-item>
     </block>
   </swiper>
-  <view>
-    <view></view>
+  <view class="message">
+    <view class="address">
+      <text>吉安市吉州区禾埠街道井冈山大道吉安市商会大厦122号</text>
+    </view>
+    <view>
+      <text class="iconfont icon-location_1" bindtap="openLocation"></text>
+      <text class="iconfont icon-phone" bindtap="download"></text>
+    </view>
   </view>
 </view>

@@ -7,4 +7,24 @@
   object-fit: cover;
   width: 100%;
 }
-
+.message {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+.message text.iconfont {
+  display: inline-block;
+  color: #158bb8;
+  cursor: pointer;
+  font-size: 40rpx;
+  margin-left: 20rpx;
+}
+.message .address {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
