@@ -7,6 +7,7 @@ const Api = ({
   data = {}
 }) => {
   return new Promise((resolve, reject) => {
+    wx.showLoading();
     wx.request({
       url: baseUrl + url,
       method,
@@ -15,10 +16,13 @@ const Api = ({
         authorization,
       },
       success(res) {
-        resolve(res);
+        resolve(res.data);
       },
       fail(error) {
         reject(error);
+      },
+      complete() {
+        wx.hideLoading();
       }
     })
   })

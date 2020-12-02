@@ -1,0 +1,41 @@
+<view class="container image-page">
+  <!-- message -->
+  <view class="message">
+    <image mode="aspectFill" src="{{work.mask}}"></image>
+    <view class="work-content">
+      <text class="name">{{work.name}}</text>
+      <text>{{work.createdAt}}</text>
+    </view>
+  </view>
+
+  <!-- content -->
+  <!-- <view class="column">
+    <view wx:for="{{columns[0]}}" class="column_item" wx:key="id">
+      <image src="{{item.path}}" class="column_pic" mode="widthFix" />
+    </view>
+  </view>
+  <view class="column">
+    <view wx:for="{{columns[1]}}" class="column_item" wx:key="id">
+      <image src="{{item.path}}" class="column_pic" mode="widthFix" />
+    </view>
+  </view> -->
+  
+  
+  <view wx:for="{{columns}}" class="column" wx:key="index">
+    <view wx:for="{{item}}" class="column_item" wx:for-item="pics" wx:key="id">
+      <image src="{{pics.path}}" class="column_pic" mode="widthFix" />
+    </view>
+  </view>
+
+  
+
+  <!-- bottom -->
+  <view class="select-part"></view>
+</view>
+<view class="hide" wx:for="{{imgs}}" wx:key="id">
+  <image
+    src="{{item.path}}"
+    bindload="loadPic"
+    data-index="{{index}}"
+  ></image>
+</view>

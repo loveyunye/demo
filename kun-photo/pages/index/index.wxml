@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <!-- swiper -->
   <swiper
     indicator-dots="true"
     circular="true"
@@ -17,13 +18,45 @@
       </swiper-item>
     </block>
   </swiper>
+
+  <!-- message -->
   <view class="message">
     <view class="address">
       <text>吉安市吉州区禾埠街道井冈山大道吉安市商会大厦122号</text>
     </view>
     <view>
       <text class="iconfont icon-location_1" bindtap="openLocation"></text>
-      <text class="iconfont icon-phone" bindtap="download"></text>
+      <text class="iconfont icon-phone" bindtap="call"></text>
     </view>
+  </view>
+
+  <!-- list -->
+  <scroll-view
+    class="works"
+    wx:if="{{works.length}}"
+    scroll-y="true"
+    bindscrolltolower="scrollBottom"
+    scroll-top="{{scrollTop}}"
+  >
+    <view
+      class="work-item"
+      wx:for="{{works}}"
+      wx:key="*this"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+    >
+      <image mode="aspectFill" src="{{item.mask}}"></image>
+      <view class="work-content">
+        <text class="name">{{item.name}}</text>
+        <text>{{item.createdAt}}</text>
+      </view>
+    </view>
+    <view wx:if="{{!more}}" class="no-more"><text>没有更多数据了</text></view>
+  </scroll-view>
+
+  <!-- no-data -->
+  <view class="nodata" wx:else>
+    <image mode="aspectFill" src="/static/common/noData.png"></image>
+    <text>暂无数据</text>
   </view>
 </view>

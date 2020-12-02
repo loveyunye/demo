@@ -1,0 +1,68 @@
+/* pages/images/images.wxss */
+.message {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #ffffff;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+}
+.message image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 8rpx;
+  opacity: 0.3;
+}
+.work-content .name {
+  display: block;
+  font-size: 32rpx;
+  margin: 20rpx 0 10rpx;
+  color: #158bb8;
+  font-weight: 700;
+}
+
+.image-page {
+  padding: 130rpx 20rpx 80rpx;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  display: flex;
+  align-items: flex-start;
+}
+.column {
+  width: 50%;
+}
+.column_item {
+  width: 340rpx;
+  background: #fff;
+  margin: 20rpx auto;
+  box-shadow: 5rpx 5rpx 10rpx 0 rgba(0, 0, 0, 0.3);
+}
+
+.column_pic {
+  display: block;
+  width: 340rpx;
+  height: 340rpx;
+}
+
+
+
+
+/* bottom */
+.select-part {
+  position: fixed;
+  height: 80rpx;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.hide {
+  display: none;
+}
