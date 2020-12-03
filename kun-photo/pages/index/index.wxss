@@ -36,13 +36,13 @@ swiper {
   white-space: nowrap;
 }
 /* no-data */
-.nodata {
+.no-data {
   height: calc(100vh - 480rpx);
   text-align: center;
   color: #666;
   font-size: 24rpx;
 }
-.nodata image {
+.no-data image {
   display: block;
   margin: 0 auto;
   transform-origin: center center;

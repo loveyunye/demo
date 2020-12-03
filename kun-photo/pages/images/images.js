@@ -4,7 +4,6 @@ const app = getApp()
 const http = app.globalData.$http
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -18,16 +17,44 @@ Page({
     columns: [
       [],
       [],
-    ]
+    ],
+    choose: 20, // 可选择
+    selectNumber: 0, // 已选择
   },
 
+  save() {},
+  submit() {},
+
+  // preview 图片
+  lookItem(target) {
+    const { path } = target.currentTarget.dataset
+    wx.previewImage({
+      urls: [path],
+    })
+  },
+
+  // 选择单个
+  selectItem(target) {
+    const { col, index, selected } = target.currentTarget.dataset
+    const { columns } = this.data
+    if (columns[col][index]) {
+      columns[col][index].selected = !selected
+    }
+    this.setData({
+      columns
+    })
+  },
+
+  // 获取详情
   async getDetail(workId) {
     const { work, imgs } = await http({
       url: `/works/detail/${workId}`
     })
-    this.setData({ work, imgs })
+    const choose = work.choose > imgs.length ? imgs.length : work.choose
+    this.setData({ work, imgs, choose })
   },
 
+  // 加载图片
   loadPic(target) {
     const { index } = target.currentTarget.dataset
     const { height, width } = target.detail
@@ -42,6 +69,8 @@ Page({
     })
     this.judgeLoad()
   },
+
+  // 判断加载
   judgeLoad() {
     const { imgs, columns } = this.data
     const { columnsHeight } = this.jsData
@@ -76,14 +105,6 @@ Page({
     wx.showLoading()
     const { workId } = this.data
     this.getDetail(workId)
-  },
-
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**

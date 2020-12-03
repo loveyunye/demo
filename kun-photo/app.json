@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/images/images",
-    "pages/index/index",
-    "pages/photos/photos",
     "pages/user/user",
+    "pages/index/index",
+    "pages/images/images",
+    "pages/photos/photos",
     "pages/work/work"
   ],
   "tabBar": {
@@ -13,12 +13,6 @@
         "text": "主页",
         "iconPath": "/static/tab/home_gray.png",
         "selectedIconPath": "/static/tab/home.png"
-      },
-      {
-        "pagePath": "pages/work/work",
-        "text": "作品",
-        "iconPath": "/static/tab/camera_gray.png",
-        "selectedIconPath": "/static/tab/camera.png"
       },
       {
         "pagePath": "pages/user/user",

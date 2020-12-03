@@ -7,30 +7,72 @@
       <text>{{work.createdAt}}</text>
     </view>
   </view>
+  
+  <!-- images -->
+  <view
+    wx:for="{{columns}}"
+    wx:for-index="col"
+    class="column"
+    wx:key="index"
+    wx:if="{{imgs.length > 0}}"
+  >
+    <view
+      wx:for="{{item}}"
+      class="column_item"
+      wx:for-item="pics"
+      wx:key="id"
+      wx:for-index="index"
+    >
+      <image
+        src="{{pics.path}}"
+        class="column_pic"
+        data-path="{{pics.path}}"
+        mode="widthFix"
+        bindtap="lookItem"
+      />
+      <view
+        class="select-btn {{pics.selected ? 'selected' : ''}}"
+        data-col="{{col}}"
+        data-index="{{index}}"
+        data-selected="{{pics.selected}}"
+        bindtap="selectItem"
+      >
+        <text class="iconfont icon-phone"></text>
+      </view>
+    </view>
+  </view >
 
-  <!-- content -->
-  <!-- <view class="column">
-    <view wx:for="{{columns[0]}}" class="column_item" wx:key="id">
-      <image src="{{item.path}}" class="column_pic" mode="widthFix" />
-    </view>
+  <!-- no-data -->
+  <view  class="no-data" wx:if="{{imgs.length === 0}}">
+    <image mode="aspectFill" src="/static/common/noData.png"></image>
+    <text>暂无数据</text>
   </view>
-  <view class="column">
-    <view wx:for="{{columns[1]}}" class="column_item" wx:key="id">
-      <image src="{{item.path}}" class="column_pic" mode="widthFix" />
-    </view>
-  </view> -->
-  
-  
-  <view wx:for="{{columns}}" class="column" wx:key="index">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics" wx:key="id">
-      <image src="{{pics.path}}" class="column_pic" mode="widthFix" />
-    </view>
-  </view>
-
-  
 
   <!-- bottom -->
-  <view class="select-part"></view>
+  <view class="select-part">
+    <view class="select-content">
+      <view class="content-text">
+        <text>已选：</text>
+        <text class="select-number">{{selectNumber}}</text>
+        <text>/</text>
+        <text>{{ choose }}</text>
+        <text
+          wx-if="{{choose !== imgs.length}}"
+          class="check-all"
+        >全选：</text>
+        <view
+          wx-if="{{choose !== imgs.length}}"
+          class="select-btn {{selectNumber !== choose ? 'selected' : ''}}"
+        >
+          <text class="iconfont icon-phone"></text>
+        </view>
+      </view>
+      <view class="content-btn">
+        <text bindtap="save">保存</text>
+        <text class="submit" bindtap="submit">提交</text>
+      </view>
+    </view>
+  </view>
 </view>
 <view class="hide" wx:for="{{imgs}}" wx:key="id">
   <image

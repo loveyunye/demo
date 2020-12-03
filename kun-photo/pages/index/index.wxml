@@ -55,7 +55,7 @@
   </scroll-view>
 
   <!-- no-data -->
-  <view class="nodata" wx:else>
+  <view class="no-data" wx:else>
     <image mode="aspectFill" src="/static/common/noData.png"></image>
     <text>暂无数据</text>
   </view>
