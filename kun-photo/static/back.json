@@ -1,0 +1,27 @@
+{
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/tab/home_gray.png",
+        "selectedIconPath": "/static/tab/home.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "作品",
+        "iconPath": "/static/tab/camera_gray.png",
+        "selectedIconPath": "/static/tab/camera.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人",
+        "iconPath": "/static/tab/person_gray.png",
+        "selectedIconPath": "/static/tab/person.png"
+      }
+    ],
+    "borderStyle": "white",
+    "selectedColor": "#158bb8",
+    "color": "#8a8a8a"
+  },
+}

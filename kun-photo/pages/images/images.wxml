@@ -1,10 +1,10 @@
 <view class="container image-page">
   <!-- message -->
   <view class="message">
-    <image mode="aspectFill" src="{{work.mask}}"></image>
+    <!-- <image mode="aspectFill" src="{{work.mask}}"></image> -->
     <view class="work-content">
       <text class="name">{{work.name}}</text>
-      <text>{{work.createdAt}}</text>
+      <text>{{work.describe}}</text>
     </view>
   </view>
   
@@ -37,7 +37,7 @@
         data-selected="{{pics.selected}}"
         bindtap="selectItem"
       >
-        <text class="iconfont icon-phone"></text>
+        <text class="iconfont icon-check"></text>
       </view>
     </view>
   </view >
@@ -56,7 +56,7 @@
         <text class="select-number">{{selectNumber}}</text>
         <text>/</text>
         <text>{{ choose }}</text>
-        <text
+        <!-- <text
           wx-if="{{choose !== imgs.length}}"
           class="check-all"
         >全选：</text>
@@ -64,8 +64,8 @@
           wx-if="{{choose !== imgs.length}}"
           class="select-btn {{selectNumber !== choose ? 'selected' : ''}}"
         >
-          <text class="iconfont icon-phone"></text>
-        </view>
+          <text class="iconfont icon-check"></text>
+        </view> -->
       </view>
       <view class="content-btn">
         <text bindtap="save">保存</text>
@@ -74,6 +74,17 @@
     </view>
   </view>
 </view>
+
+<!-- 授权框 -->
+<!-- <view class="auth">
+  <view>
+    <view class="content">
+      <text>即将会使用您的公开信息（名称、头像）进入小程序，请您确认</text>
+    </view>
+    <button type="primary" open-type="getUserInfo" bindtap="setAuth">进入小程序</button>
+  </view>
+</view> -->
+
 <view class="hide" wx:for="{{imgs}}" wx:key="id">
   <image
     src="{{item.path}}"

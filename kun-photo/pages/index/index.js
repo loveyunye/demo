@@ -29,9 +29,15 @@ Page({
     scrollTop: 0,
   },
 
+  editUser() {
+    wx.navigateTo({
+      url: '/pages/user/user'
+    })
+  },
+
   goDetail(target) {
     const { id } = target.currentTarget.dataset
-    wx.reLaunch({
+    wx.navigateTo({
       url: `/pages/images/images?workId=${id}`
     })
   },

@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const http = app.globalData.$http
+const promiseHandler = app.globalData.promiseHandler
 
 Page({
   /**
@@ -36,12 +37,28 @@ Page({
   // 选择单个
   selectItem(target) {
     const { col, index, selected } = target.currentTarget.dataset
-    const { columns } = this.data
+    const { columns, selectNumber, choose } = this.data
+    let number = selectNumber
+    if (!selected) {
+      if (selectNumber === choose) {
+        wx.showToast({
+          title: '选择数量已上限',
+          icon: 'none',
+          duration: 1000
+        })
+        return;
+      }
+      number = selectNumber + 1
+    } else {
+      number = selectNumber - 1
+    }
+
     if (columns[col][index]) {
       columns[col][index].selected = !selected
     }
     this.setData({
-      columns
+      columns,
+      selectNumber: number
     })
   },
 
@@ -92,10 +109,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    promiseHandler(wx.login).then((res) => {
+      console.log(res)
+    })
     const { workId = 5 } = options
     this.setData({
       workId
     })
+  },
+
+  setAuth() {
+    console.log('auth')
   },
 
   /**

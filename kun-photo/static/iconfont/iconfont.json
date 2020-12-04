@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "462797",
+      "name": "share",
+      "font_class": "share",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "1368613",
+      "name": "share",
+      "font_class": "share1",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "1446394",
+      "name": "avatar",
+      "font_class": "avatar",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "7409568",
+      "name": "edit",
+      "font_class": "edit",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "10043894",
+      "name": "Share",
+      "font_class": "Share",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "15066905",
+      "name": "check",
+      "font_class": "check",
+      "unicode": "e6a4",
+      "unicode_decimal": 59044
+    },
+    {
       "icon_id": "911001",
       "name": "phone",
       "font_class": "phone",

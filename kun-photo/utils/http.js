@@ -15,8 +15,12 @@ const Api = ({
       header: {
         authorization,
       },
-      success(res) {
-        resolve(res.data);
+      success({ data }) {
+        if (data.status === 401 || data.status === 404) {
+          reject(data);
+        } else {
+          resolve(data);
+        }
       },
       fail(error) {
         reject(error);

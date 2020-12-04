@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <!-- swiper -->
-  <swiper
+  <!-- <swiper
     indicator-dots="true"
     circular="true"
     autoplay="true"
@@ -17,7 +17,18 @@
         </view>
       </swiper-item>
     </block>
-  </swiper>
+  </swiper> -->
+
+  <!-- user -->
+  <view class="user-content">
+    <view class="avatar">
+      <image src="http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_265eafa355fd9faec680f2ca0a665d43.png"></image>
+      <view class="avatar-mess">
+        <text class="name">春天的峰ssssssssssssssss</text>
+        <text class="iconfont icon-edit" bindtap="editUser"></text>
+      </view>
+    </view>
+  </view>
 
   <!-- message -->
   <view class="message">
@@ -45,7 +56,7 @@
       bindtap="goDetail"
       data-id="{{item.id}}"
     >
-      <image mode="aspectFill" src="{{item.mask}}"></image>
+      <!-- <image mode="aspectFill" src="{{item.mask}}"></image> -->
       <view class="work-content">
         <text class="name">{{item.name}}</text>
         <text>{{item.createdAt}}</text>

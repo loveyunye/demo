@@ -1,3 +1,43 @@
-<view class="container">
-  
+<view class="container user-page">
+  <view class="card-user">
+    <image src="{{ form.avatarUrl || defaulturl }}" mode="aspectFill"></image>
+    <text>{{form.name}}</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="card-form">
+    <form>
+      <view class="form-item">
+        <text>头像</text>
+        <view class="avatar" bindtap="open" >
+          <image src="{{ form.avatarUrl || defaulturl }}" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="form-item require">
+        <text>姓名</text>
+        <input data-name="name" value="{{form.name}}" bindblur="inputblur" maxlength="10" placeholder="请填写姓名"/>
+      </view>
+      <view class="form-item">
+        <text>手机</text>
+        <input data-name="phone" type="number" value="{{form.phone}}" bindblur="inputblur" maxlength="11" placeholder="请填写手机"/>
+      </view>
+      <view class="form-item">
+        <text>邮箱</text>
+        <input data-name="email" value="{{form.email}}" maxlength="200" bindblur="inputblur" placeholder="请填写邮箱"/>
+      </view>
+      <view class="form-item">
+        <text>地址</text>
+        <input data-name="address" maxlength="200" value="{{form.address}}" bindblur="inputblur" placeholder="请填写详细地址"/>
+      </view>
+    </form>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="save">
+    <button class="save-btn {{disabled ? 'disabled' : ''}}" hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">保存</button>
+  </view>
+
+  <mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{groups}}">
+  </mp-actionSheet>
+  <mp-toptips msg="{{error}}" type="error" show="{{errorStatus}}"></mp-toptips>
 </view>
