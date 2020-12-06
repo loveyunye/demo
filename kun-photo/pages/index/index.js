@@ -8,25 +8,12 @@ Page({
     
   },
   data: {
-    background: [
-      {
-        text: 'demo-1',
-        src:'https://img.chainnews.com/material/images/0ae9b81f644d6589ca5c2bee9ef6c4d5.jpg-article'
-      },
-      {
-        text: 'demo-2',
-        src: 'http://nazacitydo.oss-cn-hangzhou.aliyuncs.com/ia_200000287.jpg'
-      },
-      {
-        text: 'demo-3',
-        src: 'http://nazacitydo.oss-cn-hangzhou.aliyuncs.com/ia_100000000790.jpg'
-      }
-    ],
     works: [],
     size: 10,
     page: 1,
     more: true,
     scrollTop: 0,
+    
   },
 
   editUser() {

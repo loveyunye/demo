@@ -78,12 +78,15 @@ Page({
     if (!this.data.hasAuth) {
       const { form } = this.data.form;
       const openId = await this.getOpenId();
+      const user = await this.getdefaultUser();
       this.setData({
         hasAuth: true,
         form: {
           ...form,
           openId,
-        }
+          ...user,
+        },
+        hasAuth: true
       })
     } else {
       this.save();
@@ -111,11 +114,12 @@ Page({
           filePath: tempFilePaths[0],
         })
         const result = JSON.parse(imgData)
+        console.log(result)
         this.setData({
           defaulturl: result.url,
           form: {
             ...this.data.form,
-            imageUrl: result.url,
+            avatarUrl: result.url,
           },
         })
       } catch (error) {
@@ -160,7 +164,11 @@ Page({
     if (vaild) {
       try {
         wx.showLoading({ title: '保存中' });
-        await http({ url: '/users', data: form, method: 'POST' })
+        if (form.id) {
+          await http({ url: `/users/mobile/${form.id}`, data: form, method: 'POST' })
+        } else {
+          await http({ url: '/users/mobile', data: form, method: 'POST' })
+        }
         wx.hideLoading();
       } catch (error) {
         console.log(error.errMsg || '出错误了');
@@ -236,6 +244,16 @@ Page({
     }
   },
 
+  async getdefaultUser() {
+    const { rawData } = await promiseHandler(wx.getUserInfo)
+    const userRaw = JSON.parse(rawData)
+    return {
+      ...userRaw,
+      name: userRaw.nickName,
+      avatarUrl: userRaw.avatarUrl,
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -251,13 +269,7 @@ Page({
         const res = await http({ url: '/login', data: { openId }, method: 'POST' })
         user = res.user
       } catch (error) {
-        const { rawData } = await promiseHandler(wx.getUserInfo)
-        const userRaw = JSON.parse(rawData)
-        user = {
-          ...userRaw,
-          name: userRaw.nickName,
-          avatarUrl: userRaw.avatarUrl,
-        }
+        user = await this.getdefaultUser()
       }
       this.setData({
         form: {
