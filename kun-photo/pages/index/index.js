@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
+import { http, getOpenId, promiseHandler, getdefaultUser } from '../../utils/util.js'
 const app = getApp()
-const http = app.globalData.$http
 
 Page({
   onLoad: function () {
@@ -13,7 +13,25 @@ Page({
     page: 1,
     more: true,
     scrollTop: 0,
-    
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    hasAuth: true,
+    userInfo: {},
+    defaulturl: 'http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_a8e92584535dadd72c62b7c997b57878.png'
+  },
+
+  async getUserInfo() {
+    if (!this.data.hasAuth) {
+      const openId = await getOpenId()
+      const user = await getdefaultUser();
+      const add = await http({ url: '/users/mobile', data: {
+        openId,
+        ...user,
+      }, method: 'POST' })
+      this.setData({
+        userInfo: add
+      })
+      this.getWorks(1)
+    }
   },
 
   editUser() {
@@ -31,16 +49,27 @@ Page({
 
   // 获取作品
   async getWorks(page) {
-    const { size, works } = this.data
-    const { records } = await http({
-      url: '/works',
-      data: { size, page }
-    })
-    this.setData({
-      works: page === 1 ? records : [...works, ...records],
-      more: records.length === size,
-      page: page,
-    })
+    const { size, works, userInfo } = this.data
+    console.log(userInfo)
+    if (userInfo.type === 'normal') {
+      const works = await http({
+        url: '/works/mobile/normal',
+      })
+      this.setData({
+        more: false,
+        works,
+      })
+    } else {
+      const { records } = await http({
+        url: '/works/mobile',
+        data: { size, page }
+      })
+      this.setData({
+        works: page === 1 ? records : [...works, ...records],
+        more: records.length === size,
+        page: page,
+      })
+    }
   },
 
   scrollBottom(a) {
@@ -50,11 +79,38 @@ Page({
     }
   },
 
-  onShow() {
-    this.setData({
-      scrollTop: 0,
-    })
-    this.getWorks(this.data.page);
+  async onShow() {
+    if (this.data.canIUse) {
+      const openId = await getOpenId();
+      let user;
+      wx.showLoading({ title: '加载中' });
+      try {
+        user = await http({ url: '/users/mobile' })
+      } catch (error) {
+        user = await getdefaultUser()
+        user = await http({
+          url: '/users/mobile',
+          method: 'POST',
+          data: {
+            openId,
+            ...user,
+          }
+        })
+      }
+      this.setData({
+        userInfo: user,
+        hasAuth: true,
+        scrollTop: 0,
+      })
+      if (user.id) {
+        this.getWorks(1);
+      }
+      wx.hideLoading()
+    } else {
+      this.setData({
+        hasAuth: false,
+      })
+    }
   },
 
   // 打开地址

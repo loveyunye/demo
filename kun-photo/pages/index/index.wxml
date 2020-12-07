@@ -22,9 +22,9 @@
   <!-- user -->
   <view class="user-content">
     <view class="avatar">
-      <image src="http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_265eafa355fd9faec680f2ca0a665d43.png"></image>
+      <image src="{{ userInfo.avatarUrl || defaulturl }}"></image>
       <view class="avatar-mess">
-        <text class="name">春天的峰ssssssssssssssss</text>
+        <text class="name">{{ userInfo.name }}</text>
         <text class="iconfont icon-edit" bindtap="editUser"></text>
       </view>
     </view>
@@ -70,4 +70,16 @@
     <image mode="aspectFill" src="/static/common/noData.png"></image>
     <text>暂无数据</text>
   </view>
+
+  <!-- 授权框 -->
+  <view class="auth-content" wx:if="{{!hasAuth}}">
+    <view>
+      <view class="content">
+        <text>即将会使用您的公开信息（名称、头像）进入小程序，请您确认</text>
+      </view>
+      <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">进入小程序</button>
+    </view>
+  </view>
 </view>
+
+<button class="btn-auth" hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">保存</button>

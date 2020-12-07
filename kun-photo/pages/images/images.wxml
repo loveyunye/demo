@@ -3,7 +3,7 @@
   <view class="message">
     <!-- <image mode="aspectFill" src="{{work.mask}}"></image> -->
     <view class="work-content">
-      <text class="name">{{work.name}}</text>
+      <text class="name">{{work.name || '资源未找到'}}</text>
       <text>{{work.describe}}</text>
     </view>
   </view>
@@ -36,6 +36,7 @@
         data-index="{{index}}"
         data-selected="{{pics.selected}}"
         bindtap="selectItem"
+        wx:if="{{isSelf}}"
       >
         <text class="iconfont icon-check"></text>
       </view>
@@ -49,7 +50,7 @@
   </view>
 
   <!-- bottom -->
-  <view class="select-part">
+  <view class="select-part" wx:if="{{isSelf}}">
     <view class="select-content">
       <view class="content-text">
         <text>已选：</text>
@@ -68,22 +69,22 @@
         </view> -->
       </view>
       <view class="content-btn">
-        <text bindtap="save">保存</text>
-        <text class="submit" bindtap="submit">提交</text>
+        <text bindtap="save" data-action="{{false}}">保存</text>
+        <text class="submit" bindtap="save" data-action="{{true}}">提交</text>
       </view>
     </view>
   </view>
 </view>
 
 <!-- 授权框 -->
-<!-- <view class="auth">
+<view class="auth-content" wx:if="{{!hasRegister}}">
   <view>
     <view class="content">
       <text>即将会使用您的公开信息（名称、头像）进入小程序，请您确认</text>
     </view>
-    <button type="primary" open-type="getUserInfo" bindtap="setAuth">进入小程序</button>
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">进入小程序</button>
   </view>
-</view> -->
+</view>
 
 <view class="hide" wx:for="{{imgs}}" wx:key="id">
   <image
@@ -92,3 +93,5 @@
     data-index="{{index}}"
   ></image>
 </view>
+
+<button class="btn-auth-hide" hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">保存</button>

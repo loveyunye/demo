@@ -1,8 +1,7 @@
 // pages/images/images.js
 //获取应用实例
 const app = getApp()
-const http = app.globalData.$http
-const promiseHandler = app.globalData.promiseHandler
+import { http, getOpenId, promiseHandler, getdefaultUser } from '../../utils/util.js'
 
 Page({
   /**
@@ -12,7 +11,7 @@ Page({
     columnsHeight: [0, 0],
   },
   data: {
-    workId: 5,
+    workId: null,
     work: {},
     imgs: [],
     columns: [
@@ -21,10 +20,62 @@ Page({
     ],
     choose: 20, // 可选择
     selectNumber: 0, // 已选择
+    selectIds: [],
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    hasRegister: true, // 已经注册
+    isSelf: false,
+    used: false,
+    userInfo: null,
+    code: '',
+  },
+  
+  async submit() {
+    const { columns, workId } = this.data;
+    const imgs = [
+      ...columns[0].filter(i => i.selected).map(i => i.id),
+      ...columns[1].filter(i => i.selected).map(i => i.id),
+    ]
+    wx.showLoading();
+    await http({ url: `/works/mobile/selectImgs/${workId}`, method: 'POST', data: { imgs } })
+    wx.hideLoading();
+    this.getSelected()
   },
 
-  save() {},
-  submit() {},
+
+  save(target) {
+    const { action } = target.currentTarget.dataset
+    if (action) {
+      wx.showModal({
+        title: '提示',
+        content: '确定提交吗，将不再修改？',
+        success: (res) => {
+          if (res.confirm) {
+            this.submit(true)
+          }
+        }
+      })
+    } else {
+      this.submit(false)
+    }
+  },
+
+  async getUserInfo() {
+    if (!this.data.hasRegister) {
+      const openId = await getOpenId()
+      const user = await getdefaultUser();
+      const add = await http({
+        url: '/users/mobile', data: {
+          openId,
+          ...user,
+        }, method: 'POST'
+      })
+      this.setData({
+        userInfo: add,
+        hasRegister: true,
+      })
+      this.getDetail()
+    }
+  },
 
   // preview 图片
   lookItem(target) {
@@ -62,13 +113,57 @@ Page({
     })
   },
 
+  // 获取链接内容
+  async getShare() {
+    const { userInfo, used, code } = this.data;
+    if (userInfo && !used && code) {
+      await http({ url: `/share/${code}`, method: 'POST' })
+      this.setData({
+        isSelf: true,
+      })
+    }
+  },
+
+  async getSelected() {
+    const { userInfo, workId, columns } = this.data;
+    if (userInfo && workId) {
+      const workUser = await await http({ url: `/works/mobile/self/${workId}` })
+      if (workUser) {
+        const imgs = workUser.imgs
+        columns.forEach((item) => {
+          item.forEach((i) => {
+            if (imgs.some(img => i.id === img)) {
+              i.selected = true
+            }
+          })
+        })
+        this.setData({
+          isSelf: true,
+          selectIds: workUser.imgs,
+          columns: columns
+        })
+      }
+    }
+  },
+
+
   // 获取详情
-  async getDetail(workId) {
-    const { work, imgs } = await http({
-      url: `/works/detail/${workId}`
-    })
-    const choose = work.choose > imgs.length ? imgs.length : work.choose
-    this.setData({ work, imgs, choose })
+  async getDetail() {
+    const { workId, code, userInfo } = this.data
+    if (workId) {
+      const { work, imgs, users } = await http({
+        url: `/works/detail/${workId}`
+      })
+      const choose = work.choose > imgs.length ? imgs.length : work.choose
+      this.setData({ work, imgs, choose })
+    } else if (code) {
+      const { work, imgs, share } = await http({
+        url: `/works/code/${code}`
+      })
+      const choose = work.choose > imgs.length ? imgs.length : work.choose
+      this.setData({ work, imgs, choose, used: share.used, workId: work.id })
+      await this.getShare()
+    }
   },
 
   // 加载图片
@@ -102,20 +197,24 @@ Page({
       this.setData({
         columns: columns,
       })
+      this.getSelected()
     }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    promiseHandler(wx.login).then((res) => {
-      console.log(res)
-    })
-    const { workId = 5 } = options
-    this.setData({
-      workId
-    })
+  onLoad: async function (options) {
+    const { workId, code } = options
+    if (workId) {
+      this.setData({
+        workId,
+      })
+    } else if (code) {
+      this.setData({
+        code,
+      })
+    }
   },
 
   setAuth() {
@@ -125,16 +224,59 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    wx.showLoading()
-    const { workId } = this.data
-    this.getDetail(workId)
+  onShow: async function () {
+    if (this.data.canIUse) {
+      const openId = await getOpenId();
+      let user;
+      wx.showLoading({ title: '加载中' });
+      try {
+        user = await http({ url: '/users/mobile' })
+        this.setData({
+          hasRegister: true,
+          userInfo: user
+        })
+      } catch (error) {
+        this.setData({
+          hasRegister: false,
+        })
+        wx.hideLoading()
+      }
+    } else {
+      this.setData({
+        hasRegister: false,
+      })
+    }
+    this.getDetail()
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    const { userInfo, workId } = this.data
+    if (userInfo && userInfo.type !== 'normal') {
+      return {
+        title: '摄影',
+        path: `/pages/images/images?workId=${this.data.workId}`,
+        success: function (res) {
+          console.log(res, '分享成功');
+        },
+        fail: function (res) {
+          console.log(res, '分享失败');
+        },
+        promise: new Promise(async (resove, reject) => {
+          const share = await http({
+            url: `/share/${this.data.workId}`,
+          })
+          console.log(`/pages/images/images?code=${share.code}`)
+          resove(`/pages/images/images?code=${share.code}`)
+        }),
+      }
+    } else {
+      return {
+        title: '摄影',
+        path: `/pages/index/index?workId=${workId}`,
+      }
+    }
   }
 })

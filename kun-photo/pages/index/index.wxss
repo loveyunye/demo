@@ -149,3 +149,7 @@ swiper {
   font-size: 20rpx;
   color: #999999;
 }
+
+.btn-auth {
+  display: none;
+}

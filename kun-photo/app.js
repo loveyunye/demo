@@ -40,5 +40,20 @@ App({
         })
       })
     },
+    async getOpenId() {
+      const { promiseHandler, $http } = this.globalData
+      try {
+        const { code } = await promiseHandler(wx.login);
+        const { openid: openId } = await $http({
+          url: '/getCode',
+          data: { code }
+        });
+        wx.setStorageSync('openId', openId)
+        return openId;
+      } catch (error) {
+        console.log(error.errMsg || '出错了');
+        return false;
+      }
+    },
   }
 })

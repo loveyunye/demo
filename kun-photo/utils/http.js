@@ -1,4 +1,3 @@
-const authorization = wx.getStorageSync('authorization') || ''
 const baseUrl = 'http://localhost:3000/api'
 
 const Api = ({
@@ -7,6 +6,7 @@ const Api = ({
   data = {}
 }) => {
   return new Promise((resolve, reject) => {
+    const authorization = wx.getStorageSync('openId') || ''
     wx.showLoading();
     wx.request({
       url: baseUrl + url,
@@ -31,5 +31,6 @@ const Api = ({
     })
   })
 }
+
 
 export default Api;

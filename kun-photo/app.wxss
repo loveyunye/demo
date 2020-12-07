@@ -12,3 +12,37 @@ view {
   font-size: 28rpx;
   color: #333333;
 }
+
+/* auth-content */
+.auth-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+}
+.auth-content > view {
+  background-color: #ffffff;
+  width: 480rpx;
+  margin: 50%  auto;
+  border-radius: 8rpx;
+  box-shadow: 1px 2px 7px 0px rgba(255, 255, 255, 0.2);
+  padding: 60rpx 20rpx;
+}
+.auth-content .content {
+  padding: 30rpx 20rpx 40rpx;
+  border-top: 1rpx solid #eee;
+  line-height: 40rpx;
+  color: #666;
+}
+.auth-content button {
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 40rpx;
+}
+
+.btn-auth-hide {
+  display: none;
+}

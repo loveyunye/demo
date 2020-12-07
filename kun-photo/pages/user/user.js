@@ -164,11 +164,7 @@ Page({
     if (vaild) {
       try {
         wx.showLoading({ title: '保存中' });
-        if (form.id) {
-          await http({ url: `/users/mobile/${form.id}`, data: form, method: 'POST' })
-        } else {
-          await http({ url: '/users/mobile', data: form, method: 'POST' })
-        }
+        await http({ url: '/users/mobile', data: form, method: 'POST' })
         wx.hideLoading();
       } catch (error) {
         console.log(error.errMsg || '出错误了');
@@ -266,8 +262,7 @@ Page({
         title: '加载中'
       });
       try {
-        const res = await http({ url: '/login', data: { openId }, method: 'POST' })
-        user = res.user
+        user = await http({ url: '/users/mobile' })
       } catch (error) {
         user = await this.getdefaultUser()
       }
