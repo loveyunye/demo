@@ -3,23 +3,6 @@
     <!-- 搜索 -->
     <searchBar>
       <el-button icon="el-icon-back" circle type="primary" @click="back" />
-      <div slot="handler">
-        <el-button
-          icon="el-icon-upload2"
-          circle
-          type="primary"
-          title="上传"
-          plain
-          @click="upload"
-        />
-        <el-button
-          icon="el-icon-link"
-          circle
-          type="primary"
-          plain
-          @click="addLink"
-        />
-      </div>
     </searchBar>
     <!-- 内容 -->
     <div class="container" v-loading="loading">
@@ -143,31 +126,16 @@ export default {
         })
         .catch(() => {});
     },
-    addLink() {
-      this.formUsers = this.allUsers.filter(
-        (item) => !this.users.some((i) => i.id === item.id),
-      );
-      this.visible = true;
-      this.userId = '';
-    },
     back() {
-      this.$router.push('/work/index');
+      this.$router.push('/user/index');
     },
     success() {
       this.getDetail();
     },
     async getDetail() {
       this.loading = true;
-      const { imgs, users, work } = await detail(this.id);
-      this.work = work;
-      this.imgs = imgs;
-      this.users = users.map((item) => {
-        console.log(item.imgs);
-        return {
-          ...item,
-          imgs: imgs.filter((i) => item.imgs.some((j) => j === i.id)),
-        };
-      });
+      const { user, works } = await detail(this.id);
+      console.log(user, works);
       this.loading = false;
     },
     upload() {

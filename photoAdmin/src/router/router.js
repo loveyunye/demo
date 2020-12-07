@@ -5,20 +5,21 @@ const viewRouters = [
     path: '/',
     name: 'home',
     component: Layout,
-    redirect: 'dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/index'),
-        name: 'dashboard',
-        // hidden: true,
-        meta: {
-          title: '首页',
-          icon: 'el-icon-s-home',
-          affix: true,
-        },
-      },
-    ],
+    redirect: 'work',
+    // redirect: 'dashboard',
+    // children: [
+    //   {
+    //     path: 'dashboard',
+    //     component: () => import('@/views/index'),
+    //     name: 'dashboard',
+    //     // hidden: true,
+    //     meta: {
+    //       title: '首页',
+    //       icon: 'el-icon-s-home',
+    //       affix: true,
+    //     },
+    //   },
+    // ],
   },
   {
     path: '/work',
