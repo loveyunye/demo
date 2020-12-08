@@ -1,6 +1,6 @@
 import MetroApi from '@/utils/http';
 /**
- * @name 登入
+ * @name 重置密码
  */
 export const updatePassword = (data) =>
   MetroApi({
