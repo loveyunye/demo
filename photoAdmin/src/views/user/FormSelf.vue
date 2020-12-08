@@ -57,7 +57,7 @@
         <el-button @click="visible = false">取消</el-button>
         <el-button type="primary" @click="submit">提交</el-button>
       </el-form-item>
-      <el-form-item label="描述" prop="address">
+      <el-form-item label="地址" prop="address">
         <el-input type="textarea" v-model="form.address"></el-input>
       </el-form-item>
     </el-form>

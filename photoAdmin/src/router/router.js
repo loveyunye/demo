@@ -77,6 +77,20 @@ const viewRouters = [
       },
     ],
   },
+  {
+    path: '/manager',
+    name: 'manager',
+    component: Layout,
+    redirect: '/manager/index',
+    children: [
+      {
+        path: 'manager',
+        component: () => import('@/views/manager'),
+        name: 'manager-index',
+        meta: { title: '管理员', icon: 'el-icon-s-custom', fixed: true },
+      },
+    ],
+  },
 ];
 
 export default viewRouters;
