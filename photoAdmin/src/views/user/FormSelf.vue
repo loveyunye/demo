@@ -19,6 +19,12 @@
       <el-form-item label="城市" prop="name">
         <el-input style="width: 200px" v-model="form.city"></el-input>
       </el-form-item>
+      <el-form-item label="手机" prop="phone">
+        <el-input style="width: 200px" v-model="form.phone"></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱" prop="email">
+        <el-input style="width: 200px" v-model="form.email"></el-input>
+      </el-form-item>
       <el-form-item label="性别" prop="gender">
         <el-select v-model="form.gender">
           <el-option label="女" :value="0" />
@@ -51,6 +57,9 @@
         <el-button @click="visible = false">取消</el-button>
         <el-button type="primary" @click="submit">提交</el-button>
       </el-form-item>
+      <el-form-item label="描述" prop="address">
+        <el-input type="textarea" v-model="form.address"></el-input>
+      </el-form-item>
     </el-form>
   </el-dialog>
 </template>
@@ -58,13 +67,15 @@
 import { cloneDeep } from '@/utils';
 
 const formTmp = {
-  name: '名称223112212',
-  avatarUrl:
-    'http://citydo-fhl.oss-cn-hangzhou.aliyuncs.com/upload_265eafa355fd9faec680f2ca0a665d43.png',
+  name: '',
+  avatarUrl: '',
   gender: 0,
-  city: '南昌',
+  city: '',
   password: null,
   type: 'normal',
+  phone: '',
+  email: '',
+  address: '',
 };
 
 export default {
@@ -78,7 +89,7 @@ export default {
       form: cloneDeep(formTmp),
       rules: {
         name: [{ required: true, message: '请输入作品名', trigger: 'blur' }],
-        avatarUrl: [{ required: true, message: '请上传封面', trigger: 'blur' }],
+        avatarUrl: [{ required: true, message: '请上传头像', trigger: 'blur' }],
       },
     };
   },

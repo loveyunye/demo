@@ -11,19 +11,24 @@
       <el-button icon="el-icon-search" circle type="primary" @click="getList" />
       <el-button icon="el-icon-refresh" circle @click="reset" />
       <div slot="handler">
-        <el-button
+        <!-- <el-button
           icon="el-icon-plus"
           circle
           type="success"
           plain
           @click="editOrAdd(false)"
-        />
+        /> -->
       </div>
     </searchBar>
     <!-- 内容 -->
     <div class="container" v-loading="loading">
       <el-table :max-height="maxH" :data="tableData" v-if="init">
         <el-table-column prop="name" label="用户名" align="center" />
+        <el-table-column label="头像" align="center">
+          <template slot-scope="scope">
+            <img-preview :src="scope.row.avatarUrl" class="preview-img" />
+          </template>
+        </el-table-column>
         <el-table-column prop="city" label="城市" align="center" />
         <el-table-column label="性别" align="center">
           <template slot-scope="scope">
@@ -35,11 +40,26 @@
             <span>{{ scope.row.type === 'normal' ? '普通' : '运营' }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="头像" align="center">
-          <template slot-scope="scope">
-            <img-preview :src="scope.row.avatarUrl" class="preview-img" />
-          </template>
-        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="手机"
+          align="center"
+          width="120px"
+        />
+        <el-table-column
+          prop="email"
+          label="邮箱"
+          align="center"
+          show-overflow-tooltip
+          width="150px"
+        />
+        <el-table-column
+          prop="address"
+          label="地址"
+          align="center"
+          show-overflow-tooltip
+          width="180px"
+        />
         <el-table-column
           prop="updatedAt"
           width="140px"
@@ -50,14 +70,14 @@
             <span v-format="scope.row.updatedAt"></span>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="center" width="140px">
+        <el-table-column label="操作" align="center" width="100px">
           <template slot-scope="scope">
-            <el-button
+            <!-- <el-button
               icon="el-icon-view"
               circle
               @click="look(scope.row)"
               plain
-            />
+            /> -->
             <el-button
               icon="el-icon-edit"
               circle

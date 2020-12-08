@@ -19,7 +19,7 @@
       <el-form-item label="可选数量" prop="choose">
         <el-input-number style="width: 200px" v-model="form.choose" :min="1" />
       </el-form-item>
-      <el-form-item label="封面" prop="mask">
+      <!-- <el-form-item label="封面" prop="mask">
         <div>
           <el-switch v-model="link" active-text="上传" inactive-text="链接" />
         </div>
@@ -37,7 +37,7 @@
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
         <el-input v-else v-model="form.mask"></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="描述" prop="describe">
         <el-input type="textarea" v-model="form.describe"></el-input>
       </el-form-item>

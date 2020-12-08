@@ -20,11 +20,11 @@
       <el-table :max-height="maxH" :data="tableData" v-if="init">
         <el-table-column prop="name" label="作品名" align="center" />
         <el-table-column prop="choose" label="可选数" align="center" />
-        <el-table-column label="封面" align="center">
+        <!-- <el-table-column label="封面" align="center">
           <template slot-scope="scope">
             <img-preview :src="scope.row.mask" class="preview-img" />
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
           show-overflow-tooltip
           prop="describe"

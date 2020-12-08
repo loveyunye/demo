@@ -79,8 +79,6 @@
 </template>
 <script>
 import { detail } from '@/api/user';
-import { link } from '@/api/work';
-import { allUser } from '@/api/user';
 import UploadZip from '../img/UploadZip';
 
 export default {
@@ -109,23 +107,6 @@ export default {
     },
   },
   methods: {
-    async submit() {
-      this.loadLink = true;
-      await link(this.id, this.userId);
-      this.loadLink = false;
-      this.visible = false;
-      this.$message.success('绑定成功');
-      this.getDetail();
-    },
-    delLink(item) {
-      this.$confirm('确定解除关联吗', '提示')
-        .then(async () => {
-          this.loading = true;
-          await link(this.id, item.id, false);
-          this.getDetail();
-        })
-        .catch(() => {});
-    },
     back() {
       this.$router.push('/user/index');
     },
@@ -146,7 +127,6 @@ export default {
     const { id } = this.$route.query;
     this.id = id;
     this.getDetail();
-    this.allUsers = await allUser();
     this.maxH = this.$el.clientHeight - 48 - 20 - 80 - 300 - 50; // all - search -padding - title - bottom
   },
 };
