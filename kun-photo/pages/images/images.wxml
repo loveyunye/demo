@@ -68,7 +68,7 @@
           <text class="iconfont icon-check"></text>
         </view> -->
       </view>
-      <view class="content-btn">
+      <view class="content-btn" wx:if="{{!isSubmit}}">
         <text bindtap="save" data-action="{{false}}">保存</text>
         <text class="submit" bindtap="save" data-action="{{true}}">提交</text>
       </view>

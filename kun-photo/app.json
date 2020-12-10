@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/forbid/forbid",
     "pages/images/images",
     "pages/user/user",
     "pages/photos/photos",
     "pages/work/work"
   ],
-  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",

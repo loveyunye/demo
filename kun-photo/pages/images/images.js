@@ -1,7 +1,7 @@
 // pages/images/images.js
 //获取应用实例
-const app = getApp()
 import { http, getOpenId, promiseHandler, getdefaultUser } from '../../utils/util.js'
+import { getSelf } from '../../api/user.js'
 
 Page({
   /**
@@ -24,19 +24,20 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     hasRegister: true, // 已经注册
     isSelf: false,
+    isSubmit: false,
     used: false,
     userInfo: null,
     code: '',
   },
   
-  async submit() {
+  async submit(submit) {
     const { columns, workId } = this.data;
     const imgs = [
       ...columns[0].filter(i => i.selected).map(i => i.id),
       ...columns[1].filter(i => i.selected).map(i => i.id),
     ]
     wx.showLoading();
-    await http({ url: `/works/mobile/selectImgs/${workId}`, method: 'POST', data: { imgs } })
+    await http({ url: `/works/mobile/selectImgs/${workId}`, method: 'POST', data: { imgs, submit } })
     wx.hideLoading();
     this.getSelected()
   },
@@ -88,7 +89,9 @@ Page({
   // 选择单个
   selectItem(target) {
     const { col, index, selected } = target.currentTarget.dataset
-    const { columns, selectNumber, choose } = this.data
+    const { columns, selectNumber, choose, isSubmit } = this.data
+    if (isSubmit) return;
+
     let number = selectNumber
     if (!selected) {
       if (selectNumber === choose) {
@@ -124,6 +127,7 @@ Page({
     }
   },
 
+  // 获取已选
   async getSelected() {
     const { userInfo, workId, columns } = this.data;
     if (userInfo && workId) {
@@ -139,8 +143,10 @@ Page({
         })
         this.setData({
           isSelf: true,
+          isSubmit: workUser.submit,
           selectIds: workUser.imgs,
-          columns: columns
+          columns: columns,
+          selectNumber: workUser.imgs.length,
         })
       }
     }
@@ -230,7 +236,7 @@ Page({
       let user;
       wx.showLoading({ title: '加载中' });
       try {
-        user = await http({ url: '/users/mobile' })
+        user = await getSelf()
         this.setData({
           hasRegister: true,
           userInfo: user

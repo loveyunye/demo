@@ -109,7 +109,7 @@ Page({
           sourceType: detail.value === 1 ? ['camera'] : ['album'],
         });
         const { data: imgData } = await promiseHandler(wx.uploadFile, {
-          url: `http://localhost:3000/api/upload`,
+          url: `http://42.192.133.181/api/upload`,
           name: 'image',
           filePath: tempFilePaths[0],
         })

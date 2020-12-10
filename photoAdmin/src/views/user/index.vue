@@ -35,6 +35,11 @@
             <span>{{ scope.row.gender === 0 ? '女' : '男' }}</span>
           </template>
         </el-table-column>
+        <el-table-column label="状态" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.forbid ? '禁用' : '正常' }}</span>
+          </template>
+        </el-table-column>
         <el-table-column label="类型" align="center">
           <template slot-scope="scope">
             <span>{{ scope.row.type === 'normal' ? '普通' : '运营' }}</span>
@@ -86,12 +91,28 @@
               plain
             />
             <el-button
+              v-if="scope.row.forbid"
+              icon="el-icon-check"
+              circle
+              @click="forbid(scope.row)"
+              type="success"
+              plain
+            />
+            <el-button
+              v-else
+              icon="el-icon-close"
+              circle
+              @click="forbid(scope.row)"
+              type="danger"
+              plain
+            />
+            <!-- <el-button
               icon="el-icon-delete"
               circle
               @click="del(scope.row)"
               type="danger"
               plain
-            />
+            /> -->
           </template>
         </el-table-column>
       </el-table>
@@ -135,6 +156,15 @@ export default {
     };
   },
   methods: {
+    forbid({ forbid, id }) {
+      this.$confirm(`确定${forbid ? '启用' : '禁用'}吗`, '提示')
+        .then(async () => {
+          this.loading = true;
+          await edit({ forbid: !forbid, id });
+          this.getList();
+        })
+        .catch(() => {});
+    },
     look(row) {
       this.$router.push(`/user/detail?id=${row.id}`);
     },

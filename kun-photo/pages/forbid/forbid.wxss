@@ -1,0 +1,15 @@
+/* pages/forbid/forbid.wxss */
+.forbid {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding-top: 100rpx;
+}
+image {
+  width: 100%;
+}
+
+text {
+  font-size: 32rpx;
+}

@@ -1,12 +1,9 @@
 //index.js
 //获取应用实例
 import { http, getOpenId, promiseHandler, getdefaultUser } from '../../utils/util.js'
-const app = getApp()
+import { getSelf } from '../../api/user.js'
 
 Page({
-  onLoad: function () {
-    
-  },
   data: {
     works: [],
     size: 10,
@@ -50,7 +47,6 @@ Page({
   // 获取作品
   async getWorks(page) {
     const { size, works, userInfo } = this.data
-    console.log(userInfo)
     if (userInfo.type === 'normal') {
       const works = await http({
         url: '/works/mobile/normal',
@@ -85,7 +81,7 @@ Page({
       let user;
       wx.showLoading({ title: '加载中' });
       try {
-        user = await http({ url: '/users/mobile' })
+        user = await getSelf()
       } catch (error) {
         user = await getdefaultUser()
         user = await http({

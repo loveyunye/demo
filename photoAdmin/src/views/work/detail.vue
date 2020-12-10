@@ -39,6 +39,9 @@
                 <i class="el-icon-location-outline"></i>
                 {{ item.city }}
               </span>
+              <span style="margin-left:20px;">
+                {{ item.submit ? '已提交' : '未提交' }}
+              </span>
               <el-button
                 icon="el-icon-delete"
                 circle
@@ -162,7 +165,6 @@ export default {
       this.work = work;
       this.imgs = imgs;
       this.users = users.map((item) => {
-        console.log(item.imgs);
         return {
           ...item,
           imgs: imgs.filter((i) => item.imgs.some((j) => j === i.id)),

@@ -1,0 +1,4 @@
+<view class="container forbid">
+  <image mode="aspectFit" src="/static/common/error.png"></image>
+  <text>用户故障，请联系管理人员</text>
+</view>

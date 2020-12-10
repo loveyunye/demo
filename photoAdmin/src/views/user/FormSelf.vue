@@ -53,12 +53,12 @@
         </el-upload>
         <el-input v-else v-model="form.mask"></el-input>
       </el-form-item>
+      <el-form-item label="地址" prop="address">
+        <el-input type="textarea" v-model="form.address"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button @click="visible = false">取消</el-button>
         <el-button type="primary" @click="submit">提交</el-button>
-      </el-form-item>
-      <el-form-item label="地址" prop="address">
-        <el-input type="textarea" v-model="form.address"></el-input>
       </el-form-item>
     </el-form>
   </el-dialog>
