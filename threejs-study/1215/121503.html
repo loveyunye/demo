@@ -14,6 +14,7 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  // renderer.setPixelRatio(window.devicePixelRatio) 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
   camera.position.set(0, 0, 100);
   camera.lookAt(0, 0, 0);
@@ -30,8 +31,8 @@
     geometry.vertices.push(new THREE.Vector3(-20 + i * 2, 20, 0));
   
     const geometry2 = new THREE.Geometry()
-    geometry2.vertices.push(new THREE.Vector3(-20, -20 + i * 2, 0));
-    geometry2.vertices.push(new THREE.Vector3(20, -20 + i * 2, 0));
+    geometry.vertices.push(new THREE.Vector3(-20, -20 + i * 2, 0));
+    geometry.vertices.push(new THREE.Vector3(20, -20 + i * 2, 0));
     const line = new THREE.Line(geometry, material);
     scene.add(line);
     const line2 = new THREE.Line(geometry2, material);

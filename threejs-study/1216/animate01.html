@@ -157,8 +157,9 @@
   }
   init();
   renderer.render(scene, camera);
+  new THREE.OrbitControls(camera, renderer.domElement)
 
-  // animate();
+  animate();
 </script>
 
 </html>
