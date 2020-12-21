@@ -79,7 +79,7 @@ Page({
     if (this.data.canIUse) {
       const openId = await getOpenId();
       let user;
-      wx.showLoading({ title: '加载中' });
+      wx.showLoading();
       try {
         user = await getSelf()
       } catch (error) {

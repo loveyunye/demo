@@ -1,4 +1,17 @@
-const baseUrl = 'http://localhost:3000/api'
+const baseUrl = 'https://kabutong.cn/api'
+
+// const throttle = function(fn, delay = 1000) {
+//   let timer = null
+//   return function() {
+//     if (timer) {
+//       clearTimeout(timer)
+//     } else {
+//       timer = setTimeout(() => {
+//         fn()
+//       }, delay)
+//     }
+//   }
+// }
 
 const Api = ({
   url,

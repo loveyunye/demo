@@ -108,13 +108,16 @@ Page({
           sizeType: ['compressed'],
           sourceType: detail.value === 1 ? ['camera'] : ['album'],
         });
+        wx.showLoading({
+          title: '上传中',
+        })
         const { data: imgData } = await promiseHandler(wx.uploadFile, {
-          url: `http://42.192.133.181/api/upload`,
+          url: `https://kabutong.cn/api/upload`,
           name: 'image',
           filePath: tempFilePaths[0],
         })
+        wx.hideLoading()
         const result = JSON.parse(imgData)
-        console.log(result)
         this.setData({
           defaulturl: result.url,
           form: {

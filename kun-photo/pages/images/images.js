@@ -234,7 +234,7 @@ Page({
     if (this.data.canIUse) {
       const openId = await getOpenId();
       let user;
-      wx.showLoading({ title: '加载中' });
+      wx.showLoading();
       try {
         user = await getSelf()
         this.setData({
@@ -281,7 +281,7 @@ Page({
     } else {
       return {
         title: '摄影',
-        path: `/pages/index/index?workId=${workId}`,
+        path: `/pages/images/images?workId=${workId}`,
       }
     }
   }
