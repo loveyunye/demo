@@ -22,7 +22,7 @@
   <!-- user -->
   <view class="user-content">
     <view class="avatar">
-      <image src="{{ userInfo.avatarUrl || defaulturl }}"></image>
+      <image src="{{ userInfo.avatarUrl || defaulturl }}" mode="aspectFill"></image>
       <view class="avatar-mess">
         <text class="name">{{ userInfo.name }}</text>
         <text class="iconfont icon-edit" bindtap="editUser"></text>
