@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+    }
+    .header {
+      position: relative;
+      padding: 40px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: 600;
+    }
+    .logo {
+      position: absolute;
+      width: 20%;
+      left: 0;
+      top: 0;
+    }
+
+    table {
+      width: 100%;
+      border: 1px solid #333333;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-bottom: 10px;
+    }
+    td {
+      border: 1px solid #333333;
+      min-height: 100px;
+      width: 16.66%;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>嘉兴楚汉电器有限公司</div>
+    <div>打样申请单</div>
+    <img src="./logo.png" alt="" class="logo" />
+  </div>
+  <table>
+    <tr>
+      <td class="key">申请人</td>
+      <td>__applicant__</td>
+      <td class="key">申请日期</td>
+      <td>__date__</td>
+      <td class="key">申请部门</td>
+      <td>__department__</td>
+    </tr>
+    <tr>
+      <td class="key">打样原因</td>
+      <td colspan="5">__reason__</td>
+    </tr>
+    <tr>
+      <td class="key">打样次数</td>
+      <td colspan="3"></td>
+      <td class="key">所需数量</td>
+      <td>__dyNumber__</td>
+    </tr>
+    <tr>
+      <td class="key">样品提供</td>
+      <td colspan="3">__sampleOffer__</td>
+      <td class="key">要求完成时间</td>
+      <td>__completeDate__</td>
+    </tr>
+    <tr>
+      <td rowspan="2">打样方案(详细说明)</td>
+      <td class="key">产品型号规格颜色</td>
+      <td colspan="4">__typeColor__</td>
+    </tr>
+    <tr>
+      <td colspan="5">__schemeDetails__</td>
+    </tr>
+    <tr>
+      <td class="key">是否收费</td>
+      <td colspan="5">__charge__</td>
+    </tr>
+    <tr>
+      <td class="key">审核</td>
+      <td colspan="5">__audit__</td>
+    </tr>
+    <tr>
+      <td class="key">系统制单人</td>
+      <td colspan="2">__systemUser__</td>
+      <td class="key">系统定单编号</td>
+      <td colspan="2">__systemUser__</td>
+    </tr>
+    <tr>
+      <td>负责部门</td>
+      <td>面板</td>
+      <td>主机</td>
+      <td>打包</td>
+      <td>品质</td>
+      <td>生产车间主任</td>
+    </tr>
+    <tr>
+      <td class="key">负责人签字</td>
+      <td>__panel__</td>
+      <td>__host__</td>
+      <td>__packaging__</td>
+      <td>__quality__</td>
+      <td>__generationWorkshopDirector__</td>
+    </tr>
+    <tr>
+      <td class="key" rowspan="5">评审</td>
+      <td>外观</td>
+      <td colspan="4">__appearance__</td>
+    </tr>
+    <tr>
+      <td class="key">内在参数值</td>
+      <td colspan="4">__parameter__</td>
+    </tr>
+    <tr>
+      <td class="key">销售</td>
+      <td colspan="4">__sales__</td>
+    </tr>
+    <tr>
+      <td class="key">采购</td>
+      <td colspan="4">__purchase__</td>
+    </tr>
+    <tr>
+      <td class="key">生产</td>
+      <td colspan="4">__production__</td>
+    </tr>
+  </table>
+  
+  __images__
+</body>
+</html>
