@@ -1,27 +1,34 @@
-const fs = require('fs');
-const path = require('path')
-const templatePath = path.resolve(__dirname, '../template/proofing.html')
-const html = fs.readFileSync(templatePath, 'utf8'); // 引入html模板
-const pdf = require('html-pdf'); // html-pdf
+const Koa = require('koa')
+const Route = require('koa-router')
+const koaBody = require('koa-body')
+const app = new Koa();
+const router = new Route()
 
+app.use(koaBody());
 
-const options = {
-  "format": 'A4',
-  "header": {
-    "height": "10mm",
-    "contents": ''
-  }
-};
-const data = {}
-data.images = `<img src="https://himg.bdimg.com/sys/portrait/item/public.1.b816d46a.beZO79m0gJ9a-3pCQO0Y5A.jpg" alt="" />`
-let template = html.replace(/__([A-Za-z]+)__/g, function(a1, a2) {
-  return data[a2] || ''
+router.post('/exportPdf', (ctx) => {
+  ctx.body = 'export pdf'
+})
+
+router.post('/upload', (ctx) => {
+  //接收前台POST过来的base64
+  const base64Data = req.body.imgData;
+  //过滤data:URL
+  const dataBuffer = new Buffer.from(base64Data, 'base64'); // 解码图片
+  fs.writeFile("image.png", dataBuffer, function (err) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send("保存成功！");
+    }
+  });
+  ctx.body = 123
 });
 
+router.get('/', (ctx) => {
+  ctx.body = 'get export pdf'
+})
 
-pdf.create(template, options).toFile('./test.pdf', function (err, res) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log(res);
-});
+app.use(router.routes()).use(router.allowedMethods())
+
+app.listen(3000)
