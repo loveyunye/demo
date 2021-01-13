@@ -9,6 +9,10 @@ const router = new Route()
 const { exportPdf } = require('./utils/exportPdf')
 const EnumHtml = require('./utils/enum')
 
+const phantomPath = path.resolve(__dirname, '../node_modules/phantomjs/bin/phantomjs')
+
+console.log(phantomPath)
+
 app.use(koaBody());
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, './temporary')));
@@ -24,5 +28,5 @@ router.post('/', async (ctx) => {
 
 app.use(router.routes())
 
-app.listen(3000)
-console.log('服务运行: http://localhost:3000')
+app.listen(3001)
+console.log('服务运行: http://localhost:3001')

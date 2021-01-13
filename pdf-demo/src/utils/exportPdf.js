@@ -1,11 +1,15 @@
 const path = require('path')
 const pdf = require('html-pdf'); // html-pdf
+const phantomPath = path.resolve(__dirname, '../../node_modules/phantomjs/bin/phantomjs')
+
+console.log(phantomPath)
 const optionDefault = {
   "format": 'A4',
   "header": {
     "height": "10mm",
     "contents": ''
-  }
+  },
+  // "phantomPath": phantomPath
 };
 
 module.exports = {
