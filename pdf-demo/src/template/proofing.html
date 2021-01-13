@@ -37,6 +37,22 @@
       width: 16.66%;
       word-wrap: break-word;
       word-break: break-all;
+      
+    }
+    .sign-block td {
+      text-align: center;
+    }
+    .sign {
+      width: 80px;
+      margin: auto;
+    }
+    .image-block {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .image-block img {
+      width: 300px;
+      margin: 10px;
     }
   </style>
 </head>
@@ -48,7 +64,7 @@
   <table>
     <tr>
       <td class="key">申请人</td>
-      <td>11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</td>
+      <td>__applicant__</td>
       <td class="key">申请日期</td>
       <td>__date__</td>
       <td class="key">申请部门</td>
@@ -100,13 +116,13 @@
       <td>品质</td>
       <td>生产车间主任</td>
     </tr>
-    <tr>
+    <tr class="sign-block">
       <td class="key">负责人签字</td>
-      <td>__panel__</td>
-      <td>__host__</td>
-      <td>__packaging__</td>
-      <td>__quality__</td>
-      <td>__generationWorkshopDirector__</td>
+      <td><img class="sign" src="__panel__" alt=""/></td>
+      <td><img class="sign" src="__host__" alt=""/></td>
+      <td><img class="sign" src="__packaging__" alt=""/></td>
+      <td><img class="sign" src="__quality__" alt=""/></td>
+      <td><img class="sign" src="__generationWorkshopDirector__" alt=""/></td>
     </tr>
     <tr>
       <td class="key" rowspan="5">评审</td>
@@ -130,7 +146,9 @@
       <td colspan="4">__production__</td>
     </tr>
   </table>
-  
-  __images__
+  <div class="image-block">
+    <!-- <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6b6abdd7e2ba49f9a005050c5f2489cf~tplv-k3u1fbpfcp-watermark.image" alt="" /><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6b6abdd7e2ba49f9a005050c5f2489cf~tplv-k3u1fbpfcp-watermark.image" alt="" /><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6b6abdd7e2ba49f9a005050c5f2489cf~tplv-k3u1fbpfcp-watermark.image" alt="" /> -->
+    __images__
+  </div>
 </body>
 </html>
