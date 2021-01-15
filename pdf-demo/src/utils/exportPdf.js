@@ -1,15 +1,12 @@
 const path = require('path')
 const pdf = require('html-pdf'); // html-pdf
-const phantomPath = path.resolve(__dirname, '../../node_modules/phantomjs/bin/phantomjs')
-
-console.log(phantomPath)
 const optionDefault = {
   "format": 'A4',
   "header": {
     "height": "10mm",
     "contents": ''
   },
-  // "phantomPath": phantomPath
+  // "phantomPath": "/usr/local/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"
 };
 
 module.exports = {
@@ -20,7 +17,7 @@ module.exports = {
       const html = template.replace(/__([A-Za-z]+)__/g, function(a1, a2) {
         return dataReplace[a2] || '&nbsp;&nbsp;'
       });
-      const exportPath = path.resolve(__dirname, '../temporary')
+      const exportPath = path.resolve(__dirname, '../../temporary')
       pdf.create(html, options).toFile(`${exportPath}/${name}.pdf`, (err, res) => {
         if (err) {
           reject(err)

@@ -7,11 +7,11 @@ const path = require('path')
 const app = new Koa();
 const router = new Route()
 const { exportPdf } = require('./utils/exportPdf')
-const EnumHtml = require('./utils/enum')
+const EnumHtml = require('./enum')
 
 app.use(koaBody());
 app.use(cors());
-app.use(koaStatic(path.resolve(__dirname, './temporary')));
+app.use(koaStatic(path.resolve(__dirname, '../temporary')));
 
 router.post('/', async (ctx) => {
   const data = ctx.request.body

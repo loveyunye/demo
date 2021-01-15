@@ -24,7 +24,7 @@ const TABLE_TYPE = {
 	finished: '成品首检记录表', // 打样申请单
 }
 module.exports = function(type) {
-  const templatePath = path.resolve(__dirname, `../template/${type}.html`)
+  const templatePath = path.resolve(__dirname, `./template/${type}.html`)
   const template = fs.readFileSync(templatePath, 'utf8'); // 引入html模板
   const { name, fn } = TABLE_TYPE[type]
   return { name, fn , template }
