@@ -9,10 +9,6 @@ const router = new Route()
 const { exportPdf } = require('./utils/exportPdf')
 const EnumHtml = require('./utils/enum')
 
-const phantomPath = path.resolve(__dirname, '../node_modules/phantomjs/bin/phantomjs')
-
-console.log(phantomPath)
-
 app.use(koaBody());
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, './temporary')));
