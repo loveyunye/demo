@@ -20,8 +20,6 @@ const TABLE_TYPE = {
       return data
     }
   },
-	panel: '面板成品首检记录表', // 打样申请单
-	finished: '成品首检记录表', // 打样申请单
 }
 module.exports = function(type) {
   const templatePath = path.resolve(__dirname, `./template/${type}.html`)
