@@ -19,7 +19,7 @@ function removeTemporary() {
 
 const scheduleTask = () => {
   //每分钟的第30秒定时执行一次:
-  schedule.scheduleJob('30 * * * * *', () => {
+  schedule.scheduleJob('* * 1 * * *', () => {
     // console.log('scheduleTask:' + new Date());
     removeTemporary();
   });
