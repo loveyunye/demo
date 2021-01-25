@@ -8,7 +8,9 @@ const app = new Koa();
 const router = new Route()
 const { exportPdf } = require('./utils/exportPdf')
 const EnumHtml = require('./enum')
+const { scheduleTask } = require('./utils')
 
+scheduleTask();
 app.use(koaBody());
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, '../temporary')));

@@ -1,24 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- swiper -->
-  <!-- <swiper
-    indicator-dots="true"
-    circular="true"
-    autoplay="true"
-    interval="2500"
-    duration="500"
-    indicator-color="rgba(255, 255, 255, 0.35)"
-    indicator-active-color="rgba(255, 255, 255, 0.9)"
-  >
-    <block wx:for="{{background}}" wx:key="*this">
-      <swiper-item>
-        <view class="swiper-item {{item}}">
-          <image mode="aspectFill" src="{{item.src}}"></image>
-        </view>
-      </swiper-item>
-    </block>
-  </swiper> -->
-
   <!-- user -->
   <view class="user-content">
     <view class="avatar">
