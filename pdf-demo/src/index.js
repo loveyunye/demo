@@ -9,11 +9,13 @@ const router = new Route()
 const { exportPdf } = require('./utils/exportPdf')
 const EnumHtml = require('./enum')
 const { scheduleTask } = require('./utils')
+const axios = require('axios')
 
 scheduleTask();
 app.use(koaBody());
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, '../temporary')));
+
 
 router.post('/', async (ctx) => {
   const data = ctx.request.body
@@ -23,6 +25,11 @@ router.post('/', async (ctx) => {
   ctx.status = 200
 })
 
+router.get('/geojson', async (ctx) => {
+  const { code } = ctx.request.query
+  const { data } =  await axios.get(`https://geo.datav.aliyun.com/areas/bound/geojson?code=${code}_full`)
+  ctx.body = data
+})
 
 app.use(router.routes())
 
