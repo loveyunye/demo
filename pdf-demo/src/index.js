@@ -13,8 +13,13 @@ const axios = require('axios')
 
 scheduleTask();
 app.use(koaBody());
+app.use(async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "*")
+  await next()
+})
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, '../temporary')));
+app.use(koaStatic(path.resolve(__dirname, '../static')));
 
 
 router.post('/', async (ctx) => {
