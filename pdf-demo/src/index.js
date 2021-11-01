@@ -30,11 +30,49 @@ router.post('/', async (ctx) => {
   ctx.status = 200
 })
 
+router.get('/Office/blockTypeInfo/list', async (ctx) => {
+  const res = await axios.request({
+    url: 'https://rh.2hrh.com/Office/blockTypeInfo/list?page=1&limit=10&typeName=',
+    headers: {
+      Authorization: 'Bearer 50a15217-7cdf-49c4-8fc6-2686a4b100ae'
+    }
+  })
+  ctx.body = res.data
+  ctx.status = 200
+})
+
+router.get('/Office/companyBlockManage/list', async (ctx) => {
+  const { typeId, direction } = ctx.query
+  const res = await axios.request({
+    url: 'https://rh.2hrh.com/Office/companyBlockManage/list?page=1&limit=10',
+    headers: {
+      Authorization: 'Bearer 50a15217-7cdf-49c4-8fc6-2686a4b100ae'
+    },
+    params: {
+      typeId,
+      direction,
+    }
+  })
+  ctx.body = res.data
+  ctx.status = 200
+})
+
 router.get('/geojson', async (ctx) => {
   const { code } = ctx.request.query
-  const { data } =  await axios.get(`https://geo.datav.aliyun.com/areas/bound/geojson?code=${code}_full`)
+  console.log(code);
+  const { data } = await axios.get(`https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=${code}_full`)
   ctx.body = data
 })
+
+
+router.get('/123/text/html', async (ctx) => {
+  const res = await axios.request({
+    url: 'http://www.ccta.org.cn/xhzc/cybj/202102/t20210226_4109991.html'
+  })
+  console.log(res)
+  ctx.body = res.data
+})
+
 
 app.use(router.routes())
 
