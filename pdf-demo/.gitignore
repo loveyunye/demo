@@ -1,3 +1,5 @@
 node_modules/
 temporary
 static
+src/cesium
+src/3dTiles/json/*

@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "@turf/turf": "^6.5.0",
     "axios": "^0.21.4",
+    "gcoord": "^0.3.2",
     "html-pdf": "^2.2.0",
     "image-tools": "^1.2.1",
     "koa": "^2.13.1",

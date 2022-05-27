@@ -21,6 +21,12 @@ app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, '../temporary')));
 app.use(koaStatic(path.resolve(__dirname, '../static')));
 
+router.get('/test/504', async (ctx) => {
+  setTimeout(() => {
+    ctx.status = 504
+  }, 2000)
+})
+
 
 router.post('/', async (ctx) => {
   const data = ctx.request.body
@@ -40,6 +46,7 @@ router.get('/Office/blockTypeInfo/list', async (ctx) => {
   ctx.body = res.data
   ctx.status = 200
 })
+
 
 router.get('/Office/companyBlockManage/list', async (ctx) => {
   const { typeId, direction } = ctx.query
