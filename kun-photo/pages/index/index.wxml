@@ -22,6 +22,8 @@
     </view>
   </view>
 
+  <button open-type="contact" bindcontact="handleContact" session-from="sessionFrom">客服测试</button>
+
   <!-- list -->
   <scroll-view
     class="works"

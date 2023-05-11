@@ -1,0 +1,18 @@
+{
+  "function": "oblique23dtiles",
+  "filename": "I:/Data/倾斜摄影/dayanta/data",
+  "output": "E:/Dev/Assets/3dtiles/guizhou",
+  "enableDracoCompress": true,
+  "disableLight": true,
+  "enableWebpCompress": true,
+  "MaxTextureSize": 512,
+  "mergeRepeatTexture": false,
+  "AtlasImageSize": 4096,
+  "threadNum": 11,
+  "debugDepth": 15,
+  "mergeTop": true,
+  "location": "106.657 26.6175 0.0",
+  "geometryErroRatio": 3.0,
+  "maxTileNodeNum": 32,
+  "maxRootTileNodeNum": 128
+}

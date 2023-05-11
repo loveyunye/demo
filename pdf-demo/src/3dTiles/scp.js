@@ -62,6 +62,33 @@ function modify() {
   });
 }
 
+// 修改文件
+function modifyBest() {
+  fs.readdir(readDir, function(err, files){
+    for (let i=0; i<files.length; i++) {
+      const filePath = path.join(readDir, files[i]);
+      const str = fs.readFileSync(filePath, 'utf8');
+      const jsonObj = JSON.parse(str)
+      try {
+        // 吉水模型处理
+        
+        // 去除20以上模型
+        // children 16 - children 17 - children 18 - children 19
+        jsonObj.root.children[0].children[0].children[0].children[0].children = []
+        // 18层级的数据 16 17
+        const url18 = jsonObj.root.children[0].children[0].children[0].content.url
+        const b3dm19 = jsonObj.root.children[0].children[0].children[0].children
+        const b3dm18 = jsonObj.root.children[0].children[0].children
+        // jsonObj.root.content.url = url18 // 将根结点18 赋值给 root
+        jsonObj.root.children = b3dm18 // 只存在一个19节点
+
+      } catch(error) {}
+      const file = path.join(writeDir, files[i]);
+      fs.writeFileSync(file, JSON.stringify(jsonObj));
+    } 
+  });
+}
+
 // 上报文件
 function push() {
   let rawExec = `./expect_scp_import.sh 192.168.10.73 zone zone_passwd /data/minio/data/3dmap/${servePath}`;
@@ -71,17 +98,15 @@ function push() {
       const filePath = path.join(writeDir, files[i]);
       const fileName = files[i];
       const name = files[i].split('.')[0]
-      // console.log(`${rawExec}/${name}/${fileName}`)
+      console.log(`${rawExec}/${name}/${fileName} ${filePath}`)
       // if (i > 5) {
-      // break;
+      break;
       // }
-      if (i > 0) {
-        try {
-          execSync(`${rawExec}/${name}/${fileName} ${filePath}`);
-          console.log(`提交成功 ${name}/${fileName}`, i + 1)
-        } catch(error) {
-          console.log('出错了')
-        }
+      try {
+        execSync(`${rawExec}/${name}/${fileName} ${filePath}`);
+        console.log(`提交成功 ${name}/${fileName}`, i + 1)
+      } catch(error) {
+        console.log('出错了')
       }
     } 
   })
@@ -89,6 +114,7 @@ function push() {
 
 // pull()
 // modify();
+// modifyBest();
 push()
 
 
